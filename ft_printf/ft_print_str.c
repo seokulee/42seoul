@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_print_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 14:45:45 by seokklee          #+#    #+#             */
-/*   Updated: 2023/03/26 17:49:01 by seokklee         ###   ########seoul.kr  */
+/*   Created: 2023/03/25 16:41:05 by seokklee          #+#    #+#             */
+/*   Updated: 2023/03/25 16:43:04 by seokklee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_print_str(char *s)
 {
-	va_list	ap;
-	// char	*tmp;
-	int		print_len;
+	int	s_len;
 
-	va_start(ap, format);
-	// tmp = ft_strdup(format);
-	print_len = ft_parsing(format, ap);
-	va_end(ap);
-	// free(tmp);
-	return (print_len);
+	s_len = ft_strlen(s);
+	write(1, s, s_len);
+	return (s_len);
 }

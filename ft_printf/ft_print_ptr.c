@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_print_ptr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 14:45:45 by seokklee          #+#    #+#             */
-/*   Updated: 2023/03/26 17:49:01 by seokklee         ###   ########seoul.kr  */
+/*   Created: 2023/03/25 16:49:10 by seokklee          #+#    #+#             */
+/*   Updated: 2023/03/26 18:10:59 by seokklee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_printf(const char *format, ...)
-{
-	va_list	ap;
-	// char	*tmp;
-	int		print_len;
+static void	ft_print_ptr_hex(unsigned long ptr, int *len);
 
-	va_start(ap, format);
-	// tmp = ft_strdup(format);
-	print_len = ft_parsing(format, ap);
-	va_end(ap);
-	// free(tmp);
-	return (print_len);
+int	ft_print_ptr(unsigned long ptr)
+{
+	int	len;
+
+	len = 2;
+	write(1, "0x", 2);
+	ft_print_ptr_hex(ptr, &len);
+	return (len);
+}
+
+static void	ft_print_ptr_hex(unsigned long ptr, int *len)
+{
+	char	*hex;
+
+	hex = "0123456789abcdef";
+	if ((ptr >> 4) > 0)
+		ft_print_ptr_hex(ptr >> 4, len);
+	write(1, &hex[ptr % 16], 1);
+	*len += 1;
 }

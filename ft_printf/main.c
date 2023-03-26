@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 14:45:45 by seokklee          #+#    #+#             */
-/*   Updated: 2023/03/26 17:49:01 by seokklee         ###   ########seoul.kr  */
+/*   Created: 2023/03/25 16:32:47 by seokklee          #+#    #+#             */
+/*   Updated: 2023/03/26 18:09:52 by seokklee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include <stdio.h>
+#include <limits.h>
 
-int	ft_printf(const char *format, ...)
+int main ()
 {
-	va_list	ap;
-	// char	*tmp;
-	int		print_len;
-
-	va_start(ap, format);
-	// tmp = ft_strdup(format);
-	print_len = ft_parsing(format, ap);
-	va_end(ap);
-	// free(tmp);
-	return (print_len);
+	char	*s = "sekklee";
+	int		i = INT_MAX;
+	int		hex=-123;
+	int n = ft_printf("hello %% avc int:%d ptr:%p str:%s hex:%x\n", i, s, s, hex);
+	int n2 = printf("hello %% avc int:%d ptr:%p str:%s hex:%x\n",i, s, s, hex);
+	printf("%d \n", n);
+	printf("%d \n", n2);
+	return 0;
 }

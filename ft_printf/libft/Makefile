@@ -6,11 +6,11 @@
 #    By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/14 15:45:22 by seokklee          #+#    #+#              #
-#    Updated: 2023/03/20 20:32:56 by seokklee         ###   ########seoul.kr   #
+#    Updated: 2023/03/26 01:25:40 by seokklee         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
-CC			= gcc
+CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 NAME		= libft.a
 AR			= ar

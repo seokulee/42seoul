@@ -2,5 +2,7 @@
 	"files.associations": {
 		"unistd.h": "c"
 	},
-	"C_Cpp.errorSquiggles": "disabled"
+	"C_Cpp.errorSquiggles": "disabled",
+	"42header.email": "seokklee@student.42seoul.kr",
+	"42header.username": "seokklee"
 }

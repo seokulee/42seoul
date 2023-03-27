@@ -16,7 +16,7 @@ NAME		= libftprintf.a
 LIBFT		= libft
 LIBFT_LIB	= libft.a
 AR			= ar
-ARFLAGS 	= crs
+ARFLAGS 	= rcs
 SRC			= printf \
 			parsing \
 			print_char \
@@ -25,11 +25,11 @@ SRC			= printf \
 			print_str \
 			print_hex \
 			print_u
-SRC_BNS 	= 
+#SRC_BNS 	=
 SRCS		= $(addprefix ./ft_, $(addsuffix .c, $(SRC)))
-SRCS_BNS	= $(addprefix ./ft_, $(addsuffix .c, $(SRC_BNS)))
+#SRCS_BNS	= $(addprefix ./ft_, $(addsuffix .c, $(SRC_BNS)))
 OBJS		= $(patsubst %.c, %.o, $(SRCS))
-OBJS_BNS	= $(patsubst %.c, %.o, $(SRCS_BNS))
+#OBJS_BNS	= $(patsubst %.c, %.o, $(SRCS_BNS))
 
 ifdef		WITH_BONUS
 	OBJECTS = $(OBJS) $(OBJS_BNS)
@@ -45,8 +45,8 @@ $(NAME):	$(OBJECTS)
 	cp $(LIBFT)/$(LIBFT_LIB) $@
 	$(AR) $(ARFLAGS) $@ $^
 
-bonus:
-	@make WITH_BONUS=1 all
+#bonus:
+#	@make WITH_BONUS=1 all
 
 all:		$(NAME)
 

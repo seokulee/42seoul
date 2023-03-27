@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*        printf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -19,13 +19,12 @@
 # include "./libft/libft.h"
 
 int	ft_printf(const char *format, ...);
-int	ft_parsing(const char *format, va_list ap);
+int	ft_parsing(const char *format, va_list ap, int *len);
 int	ft_print_char(int c);
 int	ft_print_nbr(int n);
 int	ft_print_ptr(unsigned long ptr);
 int	ft_print_str(char *s);
 int	ft_print_hex(long long num, char x);
 int	ft_print_u(unsigned int num);
-
 
 #endif

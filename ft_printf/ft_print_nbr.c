@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_print_nbr(int n)
 {
@@ -18,7 +18,11 @@ int	ft_print_nbr(int n)
 
 	ft_putnbr_fd(n, 1);
 	ret = 1;
-	while ((n /= 10) > 0)
-	ret++;
+	n /= 10;
+	while (n > 0)
+	{
+		ret++;
+		n /= 10;
+	}
 	return (ret);
 }

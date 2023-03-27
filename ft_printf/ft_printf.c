@@ -10,18 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
-	// char	*tmp;
-	int		print_len;
+	int		len;
 
 	va_start(ap, format);
-	// tmp = ft_strdup(format);
-	print_len = ft_parsing(format, ap);
+	ft_parsing(format, ap, &len);
 	va_end(ap);
-	// free(tmp);
-	return (print_len);
+	return (len);
 }

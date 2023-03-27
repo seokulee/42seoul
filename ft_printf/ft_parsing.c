@@ -10,38 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-int	ft_parsing(const char *format, va_list ap)
+int	ft_parsing(const char *format, va_list ap, int *len)
 {
-	char	*conversions;
-	int		len;
-
-	conversions = "cspdiuxX%%";
-	len = 0;
 	while (*format)
 	{
-		if (*format == '%' && ft_strchr(conversions, *(format + 1)))
+		if (*format == '%' && ft_strchr("cspiduxX%%", *(++format)))
 		{
-			if (*(format + 1) == 'c')
-				len += ft_print_char(va_arg(ap, int));
-			else if (*(format + 1) == '%')
-				len += ft_print_char('%');
-			else if (*(format + 1) == 's')
-				len += ft_print_str(va_arg(ap, char *));
-			else if (*(format + 1) == 'p')
-				len += ft_print_ptr(va_arg(ap, unsigned long));
-			else if (*(format + 1) == 'i' || *(format + 1) == 'd')
-				len += ft_print_nbr(va_arg(ap, int));
-			else if (*(format + 1) == 'u')
-				len += ft_print_u(va_arg(ap, unsigned int));
-			else if (*(format + 1) == 'x' || *(format + 1) == 'X')
-				len += ft_print_hex(va_arg(ap, long long), *(format + 1));
-			format++;
+			if (*format == 'c')
+				*len += ft_print_char(va_arg(ap, int));
+			else if (*format == '%')
+				*len += ft_print_char('%');
+			else if (*format == 's')
+				*len += ft_print_str(va_arg(ap, char *));
+			else if (*format == 'p')
+				*len += ft_print_ptr(va_arg(ap, unsigned long));
+			else if (*format == 'i' || *format == 'd')
+				*len += ft_print_nbr(va_arg(ap, int));
+			else if (*format == 'u')
+				*len += ft_print_u(va_arg(ap, unsigned int));
+			else if (*format == 'x' || *format == 'X')
+				*len += ft_print_hex(va_arg(ap, long long), *format);
 		}
 		else
-			len += ft_print_char(*format);
+			*len += ft_print_char(*format);
 		format++;
 	}
-	return (len);
+	return (*len);
 }

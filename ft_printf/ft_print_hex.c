@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 00:51:11 by seokklee          #+#    #+#             */
-/*   Updated: 2023/03/27 10:22:40 by seokklee         ###   ########seoul.kr  */
+/*   Updated: 2023/03/27 13:52:26 by seokklee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	ft_print_hex_rc(long long num, int *hex_len, char *hex);
 
-int	ft_print_hex(long long num, char x)
+int	ft_print_hex(unsigned int num, char x)
 {
 	int		hex_len;
 	char	*hex_lc;

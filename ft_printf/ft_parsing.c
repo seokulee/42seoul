@@ -6,13 +6,13 @@
 /*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 09:17:24 by seokklee          #+#    #+#             */
-/*   Updated: 2023/03/26 17:59:07 by seokklee         ###   ########seoul.kr  */
+/*   Updated: 2023/03/27 14:30:04 by seokklee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_parsing(const char *format, va_list ap, int *len)
+void	ft_parsing(const char *format, va_list ap, int *len)
 {
 	while (*format)
 	{
@@ -31,11 +31,10 @@ int	ft_parsing(const char *format, va_list ap, int *len)
 			else if (*format == 'u')
 				*len += ft_print_u(va_arg(ap, unsigned int));
 			else if (*format == 'x' || *format == 'X')
-				*len += ft_print_hex(va_arg(ap, long long), *format);
+				*len += ft_print_hex(va_arg(ap, unsigned int ), *format);
 		}
 		else
 			*len += ft_print_char(*format);
 		format++;
 	}
-	return (*len);
 }

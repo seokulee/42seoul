@@ -1,8 +1,5 @@
 {
 	"files.associations": {
-		"unistd.h": "c"
-	},
-	"C_Cpp.errorSquiggles": "disabled",
-	"42header.email": "seokklee@student.42seoul.kr",
-	"42header.username": "seokklee"
+		"ft_printf.h": "c"
+	}
 }

@@ -6,32 +6,61 @@
 /*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 17:28:05 by seokklee          #+#    #+#             */
-/*   Updated: 2023/03/26 17:37:23 by seokklee         ###   ########seoul.kr  */
+/*   Updated: 2023/03/30 02:07:34 by seokklee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_print_u_rc(unsigned int num, int *len);
+static int	ft_n_len(long long n);
+static char	*ft_itoa_u(long long num);
 
-int	ft_print_u(unsigned int num)
+int	ft_print_u(unsigned int n)
 {
-	int	len;
+	char		*s;
+	long long	num;
 
-	len = 1;
-	ft_print_u_rc(num, &len);
-	return (len);
+	num = (long long)n;
+	s = ft_itoa_u(num);
+	if (!s)
+		return (-1);
+	if (write(1, s, ft_n_len(num)) < 0)
+	{
+		free(s);
+		return (-1);
+	}
+	free(s);
+	return (ft_n_len(num));
 }
 
-static void	ft_print_u_rc(unsigned int num, int *len)
+static int	ft_n_len(long long n)
 {
-	char	c;
+	int	n_len;
 
-	if (num / 10 > 0)
+	n_len = 1;
+	while (n / 10 > 0)
 	{
-		*len += 1;
-		ft_print_u_rc(num / 10, len);
+		n_len++;
+		n /= 10;
 	}
-	c = (num % 10) + '0';
-	write (1, &c, 1);
+	return (n_len);
+}
+
+static char	*ft_itoa_u(long long num)
+{
+	int			n_len;
+	char		*arr;
+
+	n_len = ft_n_len(num);
+	arr = (char *)malloc(sizeof(char) * n_len + 1);
+	if (!arr)
+		return (NULL);
+	arr[n_len--] = '\0';
+	while (num / 10 > 0)
+	{
+		arr[n_len--] = ((num % 10) + '0');
+		num /= 10;
+	}
+	arr[n_len] = (num % 10) + '0';
+	return (arr);
 }

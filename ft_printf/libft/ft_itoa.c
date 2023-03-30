@@ -6,37 +6,37 @@
 /*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:37:57 by seokklee          #+#    #+#             */
-/*   Updated: 2023/03/18 18:15:56 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/03/30 01:54:57 by seokklee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 static int	ft_n_len(int n);
-static int	ft_abs(int n);
 
 char	*ft_itoa(int n)
 {
-	int		n_len;
-	int		sign;
-	char	*arr;
+	long long	num;
+	int			n_len;
+	char		*arr;
 
-	sign = 1;
-	if (n < 0)
-		sign = -1;
+	num = (long long)n;
 	n_len = ft_n_len(n);
 	arr = (char *)malloc(sizeof(char) * n_len + 1);
 	if (!arr)
 		return (NULL);
-	arr += n_len;
-	*arr = '\0';
-	while (n_len--)
+	if (n < 0)
 	{
-		*--arr = (char)(ft_abs(n % 10) + '0');
-		n /= 10;
+		arr[0] = '-';
+		num *= -1;
 	}
-	if (sign == -1)
-		*arr = '-';
+	arr[n_len--] = '\0';
+	while (num / 10 > 0)
+	{
+		arr[n_len--] = ((num % 10) + '0');
+		num /= 10;
+	}
+	arr[n_len] = (num % 10) + '0';
 	return (arr);
 }
 
@@ -55,11 +55,4 @@ static int	ft_n_len(int n)
 		n /= 10;
 	}
 	return (n_len);
-}
-
-static int	ft_abs(int n)
-{
-	if (n < 0)
-		n *= -1;
-	return (n);
 }

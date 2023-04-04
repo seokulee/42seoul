@@ -6,37 +6,75 @@
 /*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 00:51:11 by seokklee          #+#    #+#             */
-/*   Updated: 2023/03/30 02:54:19 by seokklee         ###   ########seoul.kr  */
+/*   Updated: 2023/03/30 13:17:08 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_print_hex_rc(int num, int *len, char *hex);
+static int	ft_n_len(unsigned int n);
+static char	*ft_itoh(unsigned int n);
+static void	ft_toupper_arr(char *s);
 
-int	ft_print_hex(int num, char x)
+int	ft_print_hex(unsigned int num, char x)
 {
-	int		len;
-	char	*hex_lc;
+	char	*s;
 
-	len = 0;
-	hex_lc = "0123456789abcdef";
-	if (x == 'x')
-		ft_print_hex_rc(num, &len, hex_lc);
-	return (len);
+	s = ft_itoh(num);
+	if (!s)
+		return (-1);
+	if (x == 'X')
+		ft_toupper_arr(s);
+	if (write(1, s, ft_n_len(num)) < 0)
+	{
+		free(s);
+		return (-1);
+	}
+	free(s);
+	return (ft_n_len(num));
 }
 
-static void	ft_print_hex_rc(int num, int *len, char *hex)
+static int	ft_n_len(unsigned int n)
 {
-	if (*len == -1)
-		return ;
-	*len += 1;
-	if (num / 16 != 0)
-		ft_print_hex_rc(num / 16, len, hex);
-	if (write(1, &hex[num % 16], 1) < 0)
+	int	n_len;
+
+	n_len = 1;
+	while (n / 16 > 0)
 	{
-		*len = -1;
-		return ;
+		n_len++;
+		n /= 16;
 	}
-	return ;
+	return (n_len);
+}
+
+static char	*ft_itoh(unsigned int n)
+{
+	long long	num;
+	int			n_len;
+	char		*hex;
+	char		*arr;
+
+	num = (long long)n;
+	hex = "0123456789abcdef";
+	n_len = ft_n_len(n);
+	arr = (char *)malloc(sizeof(char) * n_len + 1);
+	if (!arr)
+		return (NULL);
+	arr[n_len--] = '\0';
+	while (num / 16 > 0)
+	{
+		arr[n_len--] = (hex[num % 16]);
+		num /= 16;
+	}
+	arr[n_len] = (hex[num % 16]);
+	return (arr);
+}
+
+static void	ft_toupper_arr(char *s)
+{
+	while (*s)
+	{
+		*s = ft_toupper(*s);
+		s++;
+	}
 }

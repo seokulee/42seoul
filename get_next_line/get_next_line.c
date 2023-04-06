@@ -6,119 +6,113 @@
 /*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:26:24 by seokklee          #+#    #+#             */
-/*   Updated: 2023/04/04 16:17:33 by seokklee         ###   ########seoul.kr  */
+/*   Updated: 2023/04/06 20:40:36 by seokklee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-# include "get_next_line.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
+#include <stdio.h>
 #include <fcntl.h>
 
-char	*ft_strdup(const char *s1);
 size_t	ft_strlen(const char *s);
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+char	*ft_strdup(const char *s1);
 char	*ft_strchr(const char *s, int c);
-void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
-char	*ft_strjoin(char const *s1, char const *s2);
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-
+char	*ft_strjoin_free(char *s1, char *s2);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 char	*get_next_line(int fd)
 {
-	char		*buffer;
 	char		*line;
-	char		*line_tmp;
-	static char	tmp[BUFFER_SIZE + 1];
-	int			read_size;
-	int			i;
+	char		*buffer;
+	static char	remainder[BUFFER_SIZE + 1];
+	char		*nl_ptr;
+	ssize_t		read_size;
+	char		*sub;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	else
-	{
-
-		line = ft_calloc(1024, 1);
-		if (!line)
-			return (NULL);
-		while (1)
-		{
-			if (*tmp)
-			{
-				if (ft_strchr(tmp, '\n'))
-				{
-					i = (ft_strchr(tmp, '\n') - tmp);
-					ft_strlcpy(line, tmp, i + 2);
-					ft_strlcpy(tmp, tmp + i + 1, ft_strlen(tmp));
-					return (line);
-				}
-				line = ft_strjoin(line, tmp);
-				ft_bzero(tmp, BUFFER_SIZE + 1);
-			}
-			buffer = calloc(BUFFER_SIZE + 1, 1);
-			if (0 < (read_size = read(fd, buffer, BUFFER_SIZE)))
-			{
-				//printf("buffer : %s\n",buffer);
-				if (ft_strchr(buffer, '\n'))
-				{
-					i = (ft_strchr(buffer, '\n') - buffer);
-					ft_strlcat(line, buffer, ft_strlen(line) + i + 2);
-					ft_strlcpy(tmp, &buffer[i + 1], BUFFER_SIZE - i);
-					break ;
-				}
-				else if (read_size < BUFFER_SIZE || read_size == 0)
-				{
-					line_tmp = ft_strdup(line);
-					line = ft_strjoin(line_tmp, buffer);
-					free(line_tmp);
-					break ;
-				}
-				else
-				{
-					line_tmp = ft_strdup(line);
-					line = ft_strjoin(line_tmp, buffer);
-					free(line_tmp);
-				}
-			}
-			else
-			{
-				free (line);
-				free(buffer);
-				return (NULL);
-			}
-		}
-	}
+	line = ft_strdup("");
 	if (!line)
+		return (NULL);
+	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
 	{
 		free(line);
-		free(buffer);
+		return (NULL);
+	}
+	if (*remainder)
+		{
+			nl_ptr = ft_strchr(remainder, '\n');
+			if (nl_ptr)
+			{
+				sub = ft_substr(remainder, 0, nl_ptr - remainder + 1);
+				line = ft_strjoin_free(line, sub);
+				ft_strlcpy(remainder, nl_ptr + 1, BUFFER_SIZE - (nl_ptr - remainder));
+				free(sub);
+				return (line);
+			}
+			line = ft_strdup(remainder);
+			ft_bzero(remainder, BUFFER_SIZE + 1);
+	}
+	while (1)
+	{
+		if (0 < (read_size = read(fd, buffer, BUFFER_SIZE)))
+		{
+			nl_ptr = ft_strchr(buffer, '\n');
+			if (nl_ptr)
+			{
+				sub = ft_substr(buffer, 0, nl_ptr - buffer + 1);
+				line = ft_strjoin_free(line, sub);
+				ft_strlcpy(remainder, nl_ptr + 1, BUFFER_SIZE - (nl_ptr - buffer));
+				free(sub);
+				break ;
+			}
+			else if (read_size < BUFFER_SIZE)
+			{
+				sub = ft_substr(buffer, 0, read_size);
+				line = ft_strjoin_free(line, sub);
+				free(sub);
+				break ;
+			}
+			else
+				line = ft_strjoin_free(line, buffer);
+			ft_bzero(buffer, BUFFER_SIZE + 1);
+		}
+		else
+			break ;
+	}
+	free(buffer);
+	if (!*line)
+	{
+		free(line);
 		return (NULL);
 	}
 	return (line);
 }
 
-//int	main()
-//{
-//	int	fd;
-//	char *a;
+// int	main()
+// {
+// 	int	fd;
+// 	char *a;
 
-//	if (0 < (fd = open("./test.txt", O_RDONLY)))
-//	{
-//		for (int i = 1; i < 20; i++)
-//		{
-//			a = get_next_line(fd);
-//			printf("%d : %s", i, a);
-//		}
-//		close(fd);
-//	}
-//	else
-//		printf("fail\n");
-//	return 0;
-//}
+// 	if (0 < (fd = open("./test.txt", O_RDONLY)))
+// 	{
+// 		for (int i = 1; i <= 20; i++)
+// 		{
+// 			a = get_next_line(fd);
+// 			printf("%d :%s", i, a);
+// 		}
+// 		close(fd);
+// 	}
+// 	else
+// 		printf("fail\n");
+// 	// system("leaks a.out");
+// 	return 0;
+// }
 
 
 char	*ft_strdup(const char *s1)
@@ -175,20 +169,9 @@ char	*ft_strchr(const char *s, int c)
 			return ((char *) s);
 		s++;
 	}
-	if (*s == (unsigned char) c)
+	if (c == '\0')
 		return ((char *) s);
 	return (NULL);
-}
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*result;
-
-	result = malloc(size * count);
-	if (result == NULL)
-		return (NULL);
-	ft_bzero(result, size * count);
-	return (result);
 }
 
 void	ft_bzero(void *s, size_t n)
@@ -198,24 +181,6 @@ void	ft_bzero(void *s, size_t n)
 	uc = s;
 	while (n--)
 		*uc++ = 0;
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*str;
-	size_t	s1_len;
-	size_t	s2_len;
-	size_t	len;
-
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	len = s1_len + s2_len;
-	str = (char *)malloc(sizeof(char) * len + 1);
-	if (str == NULL)
-		return (NULL);
-	ft_strlcpy(str, s1, s1_len + 1);
-	ft_strlcat(str, s2, s1_len + s2_len + 1);
-	return (str);
 }
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
@@ -233,4 +198,45 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	if (dstsize != 0)
 		*dst = '\0';
 	return (src_len);
+}
+
+char	*ft_strjoin_free(char *s1, char *s2)
+{
+	char	*str;
+	size_t	s1_len;
+	size_t	s2_len;
+
+	if (!s1 || !s2)
+		return (NULL);
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	str = (char *)malloc(sizeof(char) * s1_len + s2_len + 1);
+	if (!str)
+	{
+		free(s1);
+		return (NULL);
+	}
+	ft_strlcpy(str, s1, s1_len + 1);
+	ft_strlcat(str, s2, s1_len + s2_len + 1);
+	free(s1);
+	return (str);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	s_len;
+	char	*ret;
+
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (s_len <= start)
+		return (ft_strdup(""));
+	if (len > s_len - start)
+		len = s_len - start;
+	ret = (char *)malloc(sizeof(char) * (len + 1));
+	if (ret == NULL)
+		return (NULL);
+	ft_strlcpy(ret, s, len + 1);
+	return (ret);
 }

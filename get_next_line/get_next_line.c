@@ -21,7 +21,7 @@
 char	*ft_strdup(const char *s1);
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
-int	ft_strchr(const char *s, int c);
+char	*ft_strchr(const char *s, int c);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
 char	*ft_strjoin(char const *s1, char const *s2);
@@ -30,56 +30,95 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE + 1];
+	char		*buffer;
 	char		*line;
+	char		*line_tmp;
+	static char	tmp[BUFFER_SIZE + 1];
 	int			read_size;
-	int			flag;
 	int			i;
 
-	read_size = 0;
-	flag = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	else
 	{
-		read_size = read(fd, buffer, BUFFER_SIZE);
-		line = calloc(100, sizeof(char));
-		while (!flag)
+
+		line = ft_calloc(1024, 1);
+		if (!line)
+			return (NULL);
+		while (1)
 		{
-			while (i < read_size)
+			if (*tmp)
 			{
-				if (buffer[i] == '\n')
+				if (ft_strchr(tmp, '\n'))
 				{
-					flag = 1;
+					i = (ft_strchr(tmp, '\n') - tmp);
+					ft_strlcpy(line, tmp, i + 2);
+					ft_strlcpy(tmp, tmp + i + 1, ft_strlen(tmp));
+					return (line);
+				}
+				line = ft_strjoin(line, tmp);
+				ft_bzero(tmp, BUFFER_SIZE + 1);
+			}
+			buffer = calloc(BUFFER_SIZE + 1, 1);
+			if (0 < (read_size = read(fd, buffer, BUFFER_SIZE)))
+			{
+				//printf("buffer : %s\n",buffer);
+				if (ft_strchr(buffer, '\n'))
+				{
+					i = (ft_strchr(buffer, '\n') - buffer);
+					ft_strlcat(line, buffer, ft_strlen(line) + i + 2);
+					ft_strlcpy(tmp, &buffer[i + 1], BUFFER_SIZE - i);
 					break ;
 				}
-				i++;
+				else if (read_size < BUFFER_SIZE || read_size == 0)
+				{
+					line_tmp = ft_strdup(line);
+					line = ft_strjoin(line_tmp, buffer);
+					free(line_tmp);
+					break ;
+				}
+				else
+				{
+					line_tmp = ft_strdup(line);
+					line = ft_strjoin(line_tmp, buffer);
+					free(line_tmp);
+				}
 			}
-			ft_strjoin(line, buffer);
-			puts(line);
+			else
+			{
+				free (line);
+				free(buffer);
+				return (NULL);
+			}
 		}
+	}
+	if (!line)
+	{
+		free(line);
+		free(buffer);
+		return (NULL);
 	}
 	return (line);
 }
 
-int	main()
-{
-	int	fd;
-	char *a;
+//int	main()
+//{
+//	int	fd;
+//	char *a;
 
-	if (0 < (fd = open("./test.txt", O_RDONLY)))
-	{
-		for (int i = 0; i < 5; i++)
-		{
-			a = get_next_line(fd);
-			puts(a);
-		}
-		close(fd);
-	}
-	else
-		printf("fail\n");
-	return 0;
-}
+//	if (0 < (fd = open("./test.txt", O_RDONLY)))
+//	{
+//		for (int i = 1; i < 20; i++)
+//		{
+//			a = get_next_line(fd);
+//			printf("%d : %s", i, a);
+//		}
+//		close(fd);
+//	}
+//	else
+//		printf("fail\n");
+//	return 0;
+//}
 
 
 char	*ft_strdup(const char *s1)
@@ -128,20 +167,17 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	return (dst_len + src_len);
 }
 
-int	ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
+	while (*s)
 	{
-		if (s[i] == (unsigned char) c)
-			return (i);
-		i++;
+		if (*s == (unsigned char) c)
+			return ((char *) s);
+		s++;
 	}
-	if (s[i] == (unsigned char) c)
-		return (i);
-	return (0);
+	if (*s == (unsigned char) c)
+		return ((char *) s);
+	return (NULL);
 }
 
 void	*ft_calloc(size_t count, size_t size)

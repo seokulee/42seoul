@@ -1,7 +1,0 @@
-{
-	"files.associations": {
-		"file_utils.h": "c",
-		"utils.h": "c",
-		"system_error": "c"
-	}
-}

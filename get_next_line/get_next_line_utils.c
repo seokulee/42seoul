@@ -4,7 +4,6 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-void	ft_bzero(void *s, size_t n);
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
@@ -78,13 +77,4 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	ft_strlcpy(ret, s, len + 1);
 	return (ret);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	unsigned char	*uc;
-
-	uc = s;
-	while (n--)
-		*uc++ = 0;
 }

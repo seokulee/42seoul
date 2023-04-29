@@ -44,7 +44,6 @@ static int	ft_n_len(int n)
 {
 	int	n_len;
 
-	n_len = 0;
 	if (n <= 0)
 		n_len = 1;
 	else

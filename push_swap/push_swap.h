@@ -25,6 +25,10 @@ void	lst_del_head(t_list *lst);
 void	lst_del_tail(t_list *lst);
 t_list	*lst_new();
 void	lst_print(t_list *lst);
-t_node	*node_add(int value);
+t_node	*node_new(int value);
 void	node_del(t_node *target);
+void	push(t_list *donor, t_list *recipient);
+void	swap(t_list *lst);
+void	rotate(t_list *lst);
+void	reverse_rotate(t_list *lst);
 #endif

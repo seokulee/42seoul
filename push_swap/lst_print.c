@@ -4,13 +4,14 @@
 void	lst_print(t_list *lst)
 {
 	t_node	*cursur;
+	int		i;
 
 	cursur = lst->head;
-	while (1)
+	i = 0;
+	while (i++ < lst->count)
 	{
 		printf("%d ",cursur->value);
 		cursur = cursur->next;
-		if (cursur == lst->head)
-			break ;
 	}
+	printf("\n");
 }

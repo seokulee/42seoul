@@ -15,6 +15,6 @@ void	swap(t_list *lst)
 	lst->head->next->prev = original_head;
 	lst->head->next = original_head;
 	original_head->prev = lst->head;
-	lst->head->prev = lst->tail; 
+	lst->head->prev = lst->tail;
 	lst->tail->next = lst->head;
 }

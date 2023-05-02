@@ -4,9 +4,11 @@ NAME		= push_swap.a
 AR			= ar
 ARFLAGS 	= crs
 SRC			= push_swap \
+			data_preprocessing \
 			node_new \
 			node_del \
 			lst_new \
+			lst_clear \
 			lst_add_head \
 			lst_add_tail \
 			lst_del_head \
@@ -16,7 +18,8 @@ SRC			= push_swap \
 			push \
 			swap \
 			rotate \
-			reverse_rotate
+			reverse_rotate \
+			ps_atoi
 SRC_BNS 	= 
 SRCS		= $(addprefix ./, $(addsuffix .c, $(SRC)))
 SRCS_BNS	= $(addprefix ./, $(addsuffix .c, $(SRC_BNS)))

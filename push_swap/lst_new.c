@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-t_list	*lst_new()
+t_list	*lst_new(void)
 {
 	t_list	*new_list;
 

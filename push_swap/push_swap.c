@@ -13,11 +13,14 @@ int	main(int argc, char **argv)
 	else
 	{
 		a = lst_new();
+		printf("hello top works!\n");
 		if (data_preprocessing(argc, argv, a) < 0)
 		{
 			//lst_clear(a);
+			printf("error\n");
 			return (-1);
 		}
+		printf("hello bottom works!\n");
 		lst_print(a);
 	}
 }

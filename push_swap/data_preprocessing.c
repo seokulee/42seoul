@@ -1,5 +1,7 @@
 #include "push_swap.h"
 
+#include <stdio.h>
+
 static int		space_null_char(int c);
 static int		ft_isdigit(int c);
 static size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
@@ -19,33 +21,9 @@ int	data_preprocessing(int argc, char **argv, t_list *a)
 		j = -1;
 		while (argv[i][++j])
 		{
-			if (!space_null_char(argv[i][j]))
-			{
-				k = 0;
-				while (!space_null_char(argv[i][j]))
-				{
-					if (!ft_isdigit(argv[i][j++]))
-						return (-1);
-					k++;
-				}
-				part = (char *)malloc(sizeof(char) * (k + 1));
-				if (!part)
-					return (-1);
-				if (k == 0)
-				{
-					free(part);
-					return (-1) ;
-				}
-				ft_strlcpy(part, &argv[i][j - k], k + 1);
-				num = ps_atoi(part);
-				if (num > 2147483647 || num < -2147483648)
-				{
-					free(part);
-					return (-1) ;
-				}
-				lst_add_tail(a, node_new(num));
-				free(part);
-			}
+			if (!ft_isdigit(argv[i][j]))
+				return (-1);
+			
 		}
 	}
 	return (1);

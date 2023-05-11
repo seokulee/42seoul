@@ -1,4 +1,16 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/16 12:35:40 by seokklee          #+#    #+#             */
+/*   Updated: 2023/03/20 17:42:59 by seokklee         ###   ########seoul.kr  */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
 
 static size_t	ft_count_str(char const *s, char c);
 static char		**ft_mal_err(char **tab);

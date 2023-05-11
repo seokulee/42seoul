@@ -13,14 +13,16 @@ int	main(int argc, char **argv)
 	else
 	{
 		a = lst_new();
-		printf("hello top works!\n");
+		////b = lst_new();
 		if (data_preprocessing(argc, argv, a) < 0)
 		{
-			//lst_clear(a);
+			lst_clear(a);
 			printf("error\n");
 			return (-1);
 		}
-		printf("hello bottom works!\n");
 		lst_print(a);
+		ft_printf("TOP:		%d\n", a->head->value);
+		ft_printf("BOT:		%d\n", a->tail->value);
+		ft_printf("CNT:		%d\n", a->count);
 	}
 }

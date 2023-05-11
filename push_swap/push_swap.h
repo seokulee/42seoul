@@ -3,6 +3,7 @@
 
 # include<unistd.h>
 # include<stdlib.h>
+# include "./ft_printf/ft_printf.h"
 
 typedef struct	s_node
 {
@@ -32,5 +33,6 @@ void	swap(t_list *lst);
 void	rotate(t_list *lst);
 void	reverse_rotate(t_list *lst);
 int		data_preprocessing(int argc, char **argv, t_list *a);
-long long	ps_atoi(const char *str);
+int		check_dup(t_list *lst, int input);
+
 #endif

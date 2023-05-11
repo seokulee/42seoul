@@ -1,8 +1,14 @@
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
-NAME		= push_swap.a
+NAME		= push_swap
+LIBFT		= libft
+LIBFT_LIB	= libft.a
+PRINTF		= ft_printf
+PRINTF_LIB	= libftprintf.a
+PS_LIB		= push_swap.a
 AR			= ar
 ARFLAGS 	= crs
+ARC			= $(LIBFT_LIB) $(PRINTF_LIB) $(PS_LIB)
 SRC			= push_swap \
 			data_preprocessing \
 			node_new \
@@ -19,7 +25,7 @@ SRC			= push_swap \
 			swap \
 			rotate \
 			reverse_rotate \
-			ps_atoi
+			check_dup
 SRC_BNS 	= 
 SRCS		= $(addprefix ./, $(addsuffix .c, $(SRC)))
 SRCS_BNS	= $(addprefix ./, $(addsuffix .c, $(SRC_BNS)))
@@ -35,8 +41,19 @@ endif
 %.o :		%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME):	$(OBJECTS)
+$(NAME):	$(ARC)
+	$(CC) -o $@ $^
+
+$(PS_LIB):	$(OBJECTS)
 	$(AR) $(ARFLAGS) $@ $^
+
+$(LIBFT_LIB):
+	make all -C $(PRINTF)/$(LIBFT)/
+	cp $(PRINTF)/$(LIBFT)/$@ ./
+
+$(PRINTF_LIB):
+	make all -C $(PRINTF)/
+	cp $(PRINTF)/$@ ./
 
 bonus:
 	@make WITH_BONUS=1 all
@@ -45,9 +62,14 @@ all:		$(NAME)
 
 clean:
 	rm -f $(OBJS) $(OBJS_BNS)
+	make clean -C $(PRINTF)
+	make clean -C $(PRINTF)/$(LIBFT)
 
 fclean:		clean
 	rm -f $(NAME)
+	rm -f $(ARC)
+	make fclean -C $(PRINTF)
+	make fclean -C $(PRINTF)/$(LIBFT)
 
 re:			fclean all
 

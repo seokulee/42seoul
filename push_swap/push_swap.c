@@ -21,11 +21,14 @@ int	main(int argc, char **argv)
 			return (-1);
 		}
 		lst_print(a);
-		ft_printf("TOP:		%d\n", a->head->value);
-		ft_printf("BOT:		%d\n", a->tail->value);
-		ft_printf("CNT:		%d\n", a->count);
+		//ft_printf("TOP:		%d\n", a->head->value);
+		//ft_printf("BOT:		%d\n", a->tail->value);
+		//ft_printf("CNT:		%d\n", a->count);
 
 		quicksort(a->head, a->tail);
+		//ft_printf("TOP:		%d\n", a->head->value);
+		//ft_printf("BOT:		%d\n", a->tail->value);
+		//ft_printf("CNT:		%d\n", a->count);
 		lst_print(a);
 	}
 }

@@ -13,8 +13,8 @@ int	main(int argc, char **argv)
 	else
 	{
 		a = lst_new();
-		////b = lst_new();
-		if (data_preprocessing(argc, argv, a) < 0)
+		//b = lst_new();
+		if (!data_preprocessing(argc, argv, a))
 		{
 			lst_clear(a);
 			printf("error\n");
@@ -24,5 +24,8 @@ int	main(int argc, char **argv)
 		ft_printf("TOP:		%d\n", a->head->value);
 		ft_printf("BOT:		%d\n", a->tail->value);
 		ft_printf("CNT:		%d\n", a->count);
+
+		quicksort(a->head, a->tail);
+		lst_print(a);
 	}
 }

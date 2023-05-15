@@ -25,7 +25,8 @@ SRC			= push_swap \
 			swap \
 			rotate \
 			reverse_rotate \
-			check_dup
+			check_dup \
+			quicksort
 SRC_BNS 	= 
 SRCS		= $(addprefix ./, $(addsuffix .c, $(SRC)))
 SRCS_BNS	= $(addprefix ./, $(addsuffix .c, $(SRC_BNS)))

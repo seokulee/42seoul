@@ -35,7 +35,11 @@ t_node	*partition(t_node *begin, t_node *end)
 		cursor = cursor->next;
 	}
 	if (checked == NULL)
-		checked = begin;
+	{
+		if (checked != cursor)
+			swap
+	}
+		//checked = begin;
 	else
 		checked = checked->next;
 	printf("---c---\n%d %d\n",checked->value, cursor->value);
@@ -50,7 +54,7 @@ void	quicksort(t_list *lst, t_node *head, t_node *tail)
 
 	if (head == NULL || head == tail)
 		return ;
-	p = partition(head, tail);
+	p = partition(lst, head, tail);
 	printf("======\n");
 	lst_print(lst);
 	printf("======\n");

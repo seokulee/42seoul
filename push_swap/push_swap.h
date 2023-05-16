@@ -34,6 +34,6 @@ void	rotate(t_list *lst);
 void	reverse_rotate(t_list *lst);
 int		data_preprocessing(int argc, char **argv, t_list *a);
 int		check_dup(t_list *lst, int input);
-void	quicksort(t_node *head, t_node *tail);
+void	quicksort(t_list *lst, t_node *head, t_node *tail);
 
 #endif

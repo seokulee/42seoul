@@ -29,11 +29,8 @@ t_node	*partition(t_node *begin, t_node *end)
 				checked = begin;
 			else
 				checked = checked->next;
-			printf("---c---\n%d %d\n",checked->value, cursor->value);
+			printf("---c---\n%d %d\n", checked->value, cursor->value);
 			swap_value(&(checked->value), &(cursor->value));
-			//printf("---every change---\n");
-			//printf("%d %d %d %d %d %d\n", begin->value, begin->next->value, begin->next->next->value, begin->next->next->next->value, begin->next->next->next->next->value, begin->next->next->next->next->next->value);
-
 		}
 		cursor = cursor->next;
 	}
@@ -43,25 +40,24 @@ t_node	*partition(t_node *begin, t_node *end)
 		checked = checked->next;
 	printf("---c---\n%d %d\n",checked->value, cursor->value);
 	swap_value(&(checked->value), &(cursor->value));
-	//printf("---final one qs---\n");
-	printf("%d %d %d %d %d %d\n", begin->value, begin->next->value, begin->next->next->value, begin->next->next->next->value, begin->next->next->next->next->value, begin->next->next->next->next->next->value);
 	sleep(3);
 	return (checked);
 }
 
-void	quicksort(t_node *head, t_node *tail)
+void	quicksort(t_list *lst, t_node *head, t_node *tail)
 {
 	t_node	*p;
 
 	if (head == NULL || head == tail)
 		return ;
 	p = partition(head, tail);
+	printf("======\n");
+	lst_print(lst);
+	printf("======\n");
 	printf("LP: \nbegin : %d end:%d\n",head->value, p->prev->value);
-	if (p == head)
-		return ;
-	quicksort(head, p->prev);
+	if (p != head)
+		quicksort(lst, head, p->prev);
 	printf("LP: \nbegin : %d end:%d\n",p->next->value, tail->value);
-	if (p == tail)
-		return ;
-	quicksort(p->next, tail);
+	if (p != tail)
+		quicksort(lst, p->next, tail);
 }

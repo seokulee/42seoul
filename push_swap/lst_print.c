@@ -10,8 +10,9 @@ void	lst_print(t_list *lst)
 	i = 0;
 	while (i++ < lst->count)
 	{
-		printf("%d ",cursur->value);
+		printf("%d\n",cursur->value);
 		cursur = cursur->next;
 	}
+	printf("-\na");
 	printf("\n");
 }

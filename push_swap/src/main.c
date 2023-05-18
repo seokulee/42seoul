@@ -13,12 +13,8 @@ int	main(int argc, char **argv)
 		list_clear(b);
 		ft_printf("Error\n");
 	}
-	else
-	{
-		lst_print_tmp(a, b);
-	}
-	do_sa(a);
-	do_rra(a);
+	lst_print_tmp(a, b);
+	sort(a, b);
 	lst_print_tmp(a, b);
 	list_clear(a);
 	list_clear(b);

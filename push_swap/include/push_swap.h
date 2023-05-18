@@ -47,6 +47,11 @@ void	do_rr(t_list *a, t_list *b);
 void	do_rra(t_list *a);
 void	do_rrb(t_list *b);
 void	do_rrr(t_list *a, t_list *b);
-
+void	sort(t_list *a, t_list *b);
+void	sort_a(int cnt, t_list *a, t_list *b);
+void	sort_b(int cnt, t_list *a, t_list *b);
+int		set_pivots(t_list *lst, int index);
+void	sort_three_a(t_list *lst);
+void	sort_three_b(t_list *lst);
 
 #endif

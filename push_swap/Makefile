@@ -25,7 +25,13 @@ SRC			= main.c \
 			swap.c \
 			push.c \
 			rotate.c \
-			reverse_rotate.c
+			reverse_rotate.c \
+			sort.c \
+			sort_a.c \
+			sort_b.c \
+			sort_three_a.c \
+			sort_three_b.c \
+			set_pivots.c
 OBJ			= $(SRC:.c=.o)
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 OBJS		= $(addprefix $(OBJ_PATH), $(OBJ))
@@ -46,7 +52,7 @@ $(OBJ_PATH):
 	mkdir $(OBJ_PATH)
 
 clean:
-	rm -rf $(OBJ_PATH)
+	rm -rf $(OBJ_PATH) $(PS_LIB)
 
 fclean:		clean
 	rm -f $(NAME)

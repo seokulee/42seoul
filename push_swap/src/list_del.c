@@ -19,5 +19,5 @@ void	lst_del(t_list *lst)
 		lst->tail->next = lst->head;
 	}
 	lst->count -= 1;
-	node_del(target);
+	node_clear(target);
 }

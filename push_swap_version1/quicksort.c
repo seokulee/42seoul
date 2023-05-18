@@ -37,7 +37,7 @@ t_node	*partition(t_node *begin, t_node *end)
 	if (checked == NULL)
 	{
 		if (checked != cursor)
-			swap
+
 	}
 		//checked = begin;
 	else

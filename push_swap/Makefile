@@ -1,11 +1,31 @@
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 NAME		= push_swap
+PS_LIB		= push_swap.a
 AR			= ar
 ARFLAGS 	= crs
 SRC_PATH	= src/
 OBJ_PATH	= obj/
-SRC			=
+SRC			= main.c \
+			node_new.c \
+			node_clear.c \
+			list_new.c \
+			list_clear.c \
+			list_add_head.c \
+			list_add_tail.c \
+			list_del.c \
+			get_data.c \
+			lst_print_tmp.c \
+			ps_atoi.c \
+			ps_itoa.c \
+			str_split.c \
+			str_utils.c \
+			ft_printf.c \
+			pf_utils.c \
+			swap.c \
+			push.c \
+			rotate.c \
+			reverse_rotate.c
 OBJ			= $(SRC:.c=.o)
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 OBJS		= $(addprefix $(OBJ_PATH), $(OBJ))
@@ -13,11 +33,14 @@ INCS		= ./include/
 
 all: $(OBJ_PATH) $(NAME)
 
-$(NAME):	$(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@
+$(NAME): $(PS_LIB)
+	$(CC) $^ -o $@
+
+$(PS_LIB): $(OBJS)
+	$(AR) $(ARFLAGS) $@ $^
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INCS)
+	$(CC) $(CFLAGS) -c $^ -o $@ -I $(INCS)
 
 $(OBJ_PATH):
 	mkdir $(OBJ_PATH)

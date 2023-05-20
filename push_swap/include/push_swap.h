@@ -4,6 +4,8 @@
 # include <stdlib.h>
 # include <stdarg.h>
 
+# include <stdio.h>
+
 typedef struct s_node
 {
 	struct s_node	*prev;
@@ -32,10 +34,6 @@ char	*ps_itoa(int n);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
-int		ft_printf(const char *format, ...);
-int		print_char(int c);
-int		print_nbr(int n);
-int		print_str(char *s);
 void	do_sa(t_list *a);
 void	do_sb(t_list *b);
 void	do_ss(t_list *a, t_list *b);
@@ -48,10 +46,10 @@ void	do_rra(t_list *a);
 void	do_rrb(t_list *b);
 void	do_rrr(t_list *a, t_list *b);
 void	sort(t_list *a, t_list *b);
-void	sort_a(int cnt, t_list *a, t_list *b);
-void	sort_b(int cnt, t_list *a, t_list *b);
-int		set_pivots(t_list *lst, int index);
-void	sort_three_a(t_list *lst);
-void	sort_three_b(t_list *lst);
-
+void	sort_a(t_list *a, t_list *b, int cnt);
+void	sort_small_a(t_list *lst, int cnt);
+void	sort_b(t_list *a, t_list *b, int cnt);
+void	sort_small_b(t_list *lst, int cnt);
+void	set_pivot(t_list *lst, int *p1, int *p2);
+void	rrr_controler(int ra_cmd, int rb_cmd, t_list *a, t_list *b);
 #endif

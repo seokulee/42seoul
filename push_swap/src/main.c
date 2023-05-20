@@ -11,9 +11,10 @@ int	main(int argc, char **argv)
 	{
 		list_clear(a);
 		list_clear(b);
-		ft_printf("Error\n");
+		printf("Error\n");
 	}
 	lst_print_tmp(a, b);
+	//do_pb(a, b);
 	sort(a, b);
 	lst_print_tmp(a, b);
 	list_clear(a);

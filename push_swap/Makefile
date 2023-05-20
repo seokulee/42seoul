@@ -20,18 +20,17 @@ SRC			= main.c \
 			ps_itoa.c \
 			str_split.c \
 			str_utils.c \
-			ft_printf.c \
-			pf_utils.c \
 			swap.c \
 			push.c \
 			rotate.c \
 			reverse_rotate.c \
 			sort.c \
 			sort_a.c \
+			sort_small_a.c \
 			sort_b.c \
-			sort_three_a.c \
-			sort_three_b.c \
-			set_pivots.c
+			sort_small_b.c \
+			set_pivot.c \
+			rrr_controler.c
 OBJ			= $(SRC:.c=.o)
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 OBJS		= $(addprefix $(OBJ_PATH), $(OBJ))

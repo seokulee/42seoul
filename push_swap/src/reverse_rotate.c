@@ -11,18 +11,18 @@ static void	reverse_rotate(t_list *lst)
 void	do_rra(t_list *a)
 {
 	reverse_rotate(a);
-	ft_printf("rra\n");
+	printf("rra\n");
 }
 
 void	do_rrb(t_list *b)
 {
 	reverse_rotate(b);
-	ft_printf("rrb\n");
+	printf("rrb\n");
 }
 
 void	do_rrr(t_list *a, t_list *b)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
-	ft_printf("rr\n");
+	printf("rrr\n");
 }

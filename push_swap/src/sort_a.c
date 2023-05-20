@@ -1,67 +1,50 @@
 #include "push_swap.h"
 
-void	sort_a(int cnt, t_list *a, t_list *b)
+void	sort_a(t_list *a, t_list *b, int cnt)
 {
 	int	pivot1;
-	int pivot2;
-	int	ra_cnt;
-	int	rb_cnt;
-	int	pb_cnt;
-	int	r_cnt;
+	int	pivot2;
+	int	ra_cmd;
+	int	rb_cmd;
+	int	pb_cmd;
+	int	n;
 
-	ft_printf("!!sort_a start!!\n");
-	ra_cnt = 0;
-	rb_cnt = 0;
-	pb_cnt = 0;
+	ra_cmd = 0;
+	rb_cmd = 0;
+	pb_cmd = 0;
 	if (cnt <= 3)
 	{
-		sort_three_a(a);
+		sort_small_a(a, cnt);
 		return ;
 	}
-	pivot1 = set_pivots(a, 1);
-	pivot2 = set_pivots(a, 2);
+	set_pivot(a, &pivot1, &pivot2);
+	printf("pivots : %d %d\n", pivot1, pivot2);
 	while (cnt-- > 0)
 	{
-		if (a->head->value >= pivot2)
+		n = a->head->value;
+		if (n > pivot2)
 		{
 			do_ra(a);
-			ra_cnt++;
+			ra_cmd++;
 		}
 		else
 		{
 			do_pb(a, b);
-			pb_cnt++;
-			if (b->head->value >= pivot1)
+			pb_cmd++;
+			if (n > pivot1)
 			{
 				do_rb(b);
-				rb_cnt++;
+				rb_cmd++;
 			}
 		}
 	}
-	if (ra_cnt >= rb_cnt)
-	{
-		r_cnt = rb_cnt;
-		ra_cnt -= r_cnt;
-		rb_cnt = 0;
-	}
-	else
-	{
-		r_cnt = ra_cnt;
-		rb_cnt -= r_cnt;
-		ra_cnt = 0;
-	}
 	lst_print_tmp(a, b);
-	while (r_cnt-- > 0)
-		do_rrr(a, b);
-	while (ra_cnt-- > 0)
-		do_rra(a);
-	while (rb_cnt-- > 0)
-		do_rrb(b);
+	rrr_controler(ra_cmd, rb_cmd, a, b);
 	lst_print_tmp(a, b);
-	sort_a(ra_cnt, a, b);
+	sort_a(a, b, ra_cmd);
 	lst_print_tmp(a, b);
-	sort_b(rb_cnt, a, b);
+	sort_b(a, b, rb_cmd);
 	lst_print_tmp(a, b);
-	sort_b(pb_cnt - rb_cnt, a, b);
+	sort_b(a, b, pb_cmd - rb_cmd);
 	lst_print_tmp(a, b);
 }

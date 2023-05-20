@@ -14,18 +14,18 @@ static void	swap(t_list *lst)
 void	do_sa(t_list *a)
 {
 	swap(a);
-	ft_printf("sa\n");
+	printf("sa\n");
 }
 
 void	do_sb(t_list *b)
 {
 	swap(b);
-	ft_printf("sb\n");
+	printf("sb\n");
 }
 
 void	do_ss(t_list *a, t_list *b)
 {
 	swap(a);
 	swap(b);
-	ft_printf("ss\n");
+	printf("ss\n");
 }

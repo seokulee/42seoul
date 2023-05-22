@@ -14,7 +14,7 @@ void	do_pa(t_list *a, t_list *b)
 	if (b->count == 0)
 		return ;
 	push(b, a);
-	printf("pa\n");
+	write(1, "pa\n", 3);
 }
 
 void	do_pb(t_list *a, t_list *b)
@@ -22,5 +22,5 @@ void	do_pb(t_list *a, t_list *b)
 	if (a->count == 0)
 		return ;
 	push(a, b);
-	printf("pb\n");
+	write(1, "pb\n", 3);
 }

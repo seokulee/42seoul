@@ -15,7 +15,6 @@ SRC			= main.c \
 			list_add_tail.c \
 			list_del.c \
 			get_data.c \
-			lst_print_tmp.c \
 			ps_atoi.c \
 			ps_itoa.c \
 			str_split.c \

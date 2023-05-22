@@ -2,9 +2,6 @@
 # define PUSH_SWAP_H
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdarg.h>
-
-# include <stdio.h>
 
 typedef struct s_node
 {
@@ -26,7 +23,6 @@ void	list_clear(t_list *lst);
 void	list_add_head(t_list *lst, t_node *node);
 void	list_add_tail(t_list *lst, t_node *node);
 void	lst_del(t_list *lst);
-void	lst_print_tmp(t_list *a, t_list *b);
 int		get_data(int argc, char **argv, t_list *a);
 char	**str_split(char const *s, char c);
 int		ps_atoi(const char *str);
@@ -50,6 +46,6 @@ void	sort_a(t_list *a, t_list *b, int cnt);
 void	sort_small_a(t_list *lst, int cnt);
 void	sort_b(t_list *a, t_list *b, int cnt);
 void	sort_small_b(t_list *lst, int cnt);
-void	set_pivot(t_list *lst, int *p1, int *p2);
+void	set_pivot(t_list *lst, int cnt, int *p1, int *p2);
 void	rrr_controler(int ra_cmd, int rb_cmd, t_list *a, t_list *b);
 #endif

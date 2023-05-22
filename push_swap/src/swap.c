@@ -15,7 +15,7 @@ void	do_sa(t_list *a)
 	if (a->count < 2)
 		return ;
 	swap(a);
-	printf("sa\n");
+	write(1, "sa\n", 3);
 }
 
 void	do_sb(t_list *b)
@@ -23,12 +23,12 @@ void	do_sb(t_list *b)
 
 	if (b->count < 2)
 		return ;
-	printf("sb\n");
+	write(1, "sb\n", 3);
 }
 
 void	do_ss(t_list *a, t_list *b)
 {
 	swap(a);
 	swap(b);
-	printf("ss\n");
+	write(1, "ss\n", 3);
 }

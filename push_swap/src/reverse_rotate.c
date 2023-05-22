@@ -11,7 +11,7 @@ void	do_rra(t_list *a)
 	if (a->count < 2)
 		return ;
 	reverse_rotate(a);
-	printf("rra\n");
+	write(1, "rra\n", 4);
 }
 
 void	do_rrb(t_list *b)
@@ -19,12 +19,12 @@ void	do_rrb(t_list *b)
 	if (b->count < 2)
 		return ;
 	reverse_rotate(b);
-	printf("rrb\n");
+	write(1, "rrb\n", 4);
 }
 
 void	do_rrr(t_list *a, t_list *b)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
-	printf("rrr\n");
+	write(1, "rrr\n", 4);
 }

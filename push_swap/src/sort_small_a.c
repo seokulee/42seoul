@@ -1,5 +1,10 @@
 #include "push_swap.h"
 
+void	rsrr_a(t_list *lst);
+void	srsrr_a(t_list *lst);
+void	sort_total3(t_list	*lst, int f, int s, int t);
+void	sort_only3(t_list *lst, int f, int s, int t);
+
 void	sort_small_a(t_list *lst, int cnt)
 {
 	int	first;
@@ -17,32 +22,87 @@ void	sort_small_a(t_list *lst, int cnt)
 			do_sa(lst);
 		return ;
 	}
+	if (cnt == 3 && lst->count == 3)
+	{
+		sort_total3(lst, first, second, third);
+		return ;
+	}
+	else if (cnt == 3)
+	{
+		sort_only3(lst, first, second, third);
+		return ;
+	}
+}
+
+void	sort_total3(t_list	*lst, int f, int s, int t)
+{
+	if (f > s && f > t)
+	{
+		if (s > t)
+		{
+			do_sa(lst);
+			do_rra(lst);
+		}
+		else
+			do_ra(lst);
+	}
+	else if (s > f && s > t)
+	{
+		if (f > t)
+			do_rra(lst);
+		else
+		{
+			do_rra(lst);
+			do_sa(lst);
+		}
+	}
 	else
 	{
-		if (first > second && first > third)
+		if (f > s)
+			do_sa(lst);
+	}
+}
+
+void	sort_only3(t_list *lst, int f, int s, int t)
+{
+	if (f > s && f > t)
 		{
-			if (second > third)
+			if (s > t)
 			{
+				srsrr_a(lst);
 				do_sa(lst);
-				do_rra(lst);
 			}
 			else
-				do_ra(lst);
+				srsrr_a(lst);
 		}
-		else if (second > first && second > third)
+		else if (s > f && s > t)
 		{
-			if (first > third)
-				do_rra(lst);
-			else
+			if (f > t)
 			{
-				do_rra(lst);
+				rsrr_a(lst);
 				do_sa(lst);
 			}
+			else
+				rsrr_a(lst);
 		}
 		else
 		{
-			if (first > second)
+			if (f > s)
 				do_sa(lst);
 		}
-	}
+}
+
+void	rsrr_a(t_list *lst)
+{
+	do_ra(lst);
+	do_sa(lst);
+	do_rra(lst);
+}
+
+void	srsrr_a(t_list *lst)
+{
+	do_sa(lst);
+	do_ra(lst);
+	do_sa(lst);
+	do_rra(lst);
 }

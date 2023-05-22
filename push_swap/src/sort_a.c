@@ -2,8 +2,7 @@
 
 void	sort_a(t_list *a, t_list *b, int cnt)
 {
-	int	pivot1;
-	int	pivot2;
+	int	pivots[2];
 	int	ra_cmd;
 	int	rb_cmd;
 	int	pb_cmd;
@@ -17,12 +16,11 @@ void	sort_a(t_list *a, t_list *b, int cnt)
 		sort_small_a(a, cnt);
 		return ;
 	}
-	set_pivot(a, &pivot1, &pivot2);
-	//printf("pivots : %d %d\n", pivot1, pivot2);
+	set_pivot(a, cnt, &pivots[0], &pivots[1]);
 	while (cnt-- > 0)
 	{
 		n = a->head->value;
-		if (n > pivot2)
+		if (n > pivots[1])
 		{
 			do_ra(a);
 			ra_cmd++;
@@ -31,20 +29,15 @@ void	sort_a(t_list *a, t_list *b, int cnt)
 		{
 			do_pb(a, b);
 			pb_cmd++;
-			if (n > pivot1)
+			if (n > pivots[0])
 			{
 				do_rb(b);
 				rb_cmd++;
 			}
 		}
 	}
-	//lst_print_tmp(a, b);
 	rrr_controler(ra_cmd, rb_cmd, a, b);
-	//lst_print_tmp(a, b);
 	sort_a(a, b, ra_cmd);
-	//lst_print_tmp(a, b);
 	sort_b(a, b, rb_cmd);
-	//lst_print_tmp(a, b);
 	sort_b(a, b, pb_cmd - rb_cmd);
-	//lst_print_tmp(a, b);
 }

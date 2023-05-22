@@ -22,9 +22,11 @@ void	sort_small_b(t_list *lst, int cnt)
 		if (first > second && first > third)
 		{
 			if (second < third)
+			{
 				do_rb(lst);
 				do_sb(lst);
 				do_rrb(lst);
+			}
 		}
 		else if (second > first && second > third)
 		{

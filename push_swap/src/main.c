@@ -9,14 +9,10 @@ int	main(int argc, char **argv)
 	b = list_new();
 	if (!get_data(argc, argv, a))
 	{
-		//list_clear(a);
-		//list_clear(b);
-		printf("Error\n");
+		write(1, "Error!\n", 7);
 		exit(0);
 	}
-	lst_print_tmp(a, b);
 	sort(a, b);
-	lst_print_tmp(a, b);
 	list_clear(a);
 	list_clear(b);
 }

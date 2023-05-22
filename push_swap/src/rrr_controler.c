@@ -7,7 +7,7 @@ void	rrr_controler(int ra_cmd, int rb_cmd, t_list *a, t_list *b)
 
 	i = 0;
 	j = 0;
-	printf("ra_cmd %d rb_cmd %d \n", ra_cmd, rb_cmd);
+	//printf("ra_cmd %d rb_cmd %d \n", ra_cmd, rb_cmd);
 	if (ra_cmd >= rb_cmd)
 	{
 		while (rb_cmd - i++ > 0)

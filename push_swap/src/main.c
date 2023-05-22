@@ -9,12 +9,12 @@ int	main(int argc, char **argv)
 	b = list_new();
 	if (!get_data(argc, argv, a))
 	{
-		list_clear(a);
-		list_clear(b);
+		//list_clear(a);
+		//list_clear(b);
 		printf("Error\n");
+		exit(0);
 	}
 	lst_print_tmp(a, b);
-	//do_pb(a, b);
 	sort(a, b);
 	lst_print_tmp(a, b);
 	list_clear(a);

@@ -2,20 +2,22 @@
 
 static void	rotate(t_list *lst)
 {
-	if (lst->count < 2)
-		return ;
 	lst->tail = lst->head;
 	lst->head = lst->head->next;
 }
 
 void	do_ra(t_list *a)
 {
+	if (a->count < 2)
+		return ;
 	rotate(a);
 	printf("ra\n");
 }
 
 void	do_rb(t_list *b)
 {
+	if (b->count < 2)
+		return ;
 	rotate(b);
 	printf("rb\n");
 }

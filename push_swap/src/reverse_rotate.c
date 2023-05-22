@@ -2,20 +2,22 @@
 
 static void	reverse_rotate(t_list *lst)
 {
-	if (lst->count < 2)
-		return ;
 	lst->head = lst->tail;
 	lst->tail = lst->tail->prev;
 }
 
 void	do_rra(t_list *a)
 {
+	if (a->count < 2)
+		return ;
 	reverse_rotate(a);
 	printf("rra\n");
 }
 
 void	do_rrb(t_list *b)
 {
+	if (b->count < 2)
+		return ;
 	reverse_rotate(b);
 	printf("rrb\n");
 }

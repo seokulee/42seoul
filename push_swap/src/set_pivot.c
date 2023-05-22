@@ -2,23 +2,28 @@
 
 void	set_pivot(t_list *lst, int *p1, int *p2)
 {
-	int		h;
-	int		t;
-	int		m;
+	int		i1;
+	int		i2;
 	int		cnt;
 	t_node	*n;
 
-	n = lst->head;
 	cnt = lst->count;
-	h = n->value;
-	t = n->prev->value;
-	while (cnt / 2 > 0)
+	n = lst->head;
+	i1 = cnt / 3;
+	i2 = cnt / 3 * 2;
+	while (cnt-- > 0)
 	{
+		if (cnt == i1)
+			*p1 = n->value;
+		else if (cnt == i2)
+			*p2 = n->value;
 		n = n->next;
-		cnt--;
 	}
-	m = n->value;
-	*p1 = ((h + t + m) / 3) + ((h - m) / 2);
-	*p2 = ((h + t + m) / 3) - ((m - t) / 2);
-	sleep(2);
+	if (*p1 > *p2)
+	{
+		cnt = *p1;
+		*p1 = *p2;
+		*p2 = cnt;
+	}
+	//sleep(2);
 }

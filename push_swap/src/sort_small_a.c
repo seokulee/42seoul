@@ -6,12 +6,12 @@ void	sort_small_a(t_list *lst, int cnt)
 	int	second;
 	int	third;
 
+	if (!lst->head || cnt <= 1)
+		return ;
 	first = lst->head->value;
 	second = lst->head->next->value;
 	third = lst->head->next->next->value;
-	if (cnt <= 1)
-		return ;
-	else if (cnt == 2)
+	if (cnt == 2)
 	{
 		if (first > second)
 			do_sa(lst);

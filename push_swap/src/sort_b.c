@@ -20,6 +20,7 @@ void	sort_b(t_list *a, t_list *b, int cnt)
 		return ;
 	}
 	set_pivot(b, &pivot1, &pivot2);
+	//printf("pivots : %d %d\n", pivot1, pivot2);
 	while (cnt-- > 0)
 	{
 		n = b->head->value;
@@ -39,13 +40,13 @@ void	sort_b(t_list *a, t_list *b, int cnt)
 			}
 		}
 	}
-	lst_print_tmp(a, b);
+	//lst_print_tmp(a, b);
 	sort_a(a, b, pa_cmd - ra_cmd);
-	lst_print_tmp(a, b);
+	//lst_print_tmp(a, b);
 	rrr_controler(ra_cmd, rb_cmd, a, b);
-	lst_print_tmp(a, b);
+	//lst_print_tmp(a, b);
 	sort_a(a, b, ra_cmd);
-	lst_print_tmp(a, b);
+	//lst_print_tmp(a, b);
 	sort_b(a, b, rb_cmd);
-	lst_print_tmp(a, b);
+	//lst_print_tmp(a, b);
 }

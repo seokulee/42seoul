@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:26:32 by seokklee          #+#    #+#             */
-/*   Updated: 2023/05/23 14:26:33 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/05/24 01:24:36 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	swap(t_list *lst)
 
 void	do_sa(t_list *a)
 {
-
 	if (a->count < 2)
 		return ;
 	swap(a);
@@ -32,7 +31,6 @@ void	do_sa(t_list *a)
 
 void	do_sb(t_list *b)
 {
-
 	if (b->count < 2)
 		return ;
 	write(1, "sb\n", 3);

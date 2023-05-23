@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:26:16 by seokklee          #+#    #+#             */
-/*   Updated: 2023/05/23 14:26:17 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/05/24 01:14:07 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	sort_a(t_list *a, t_list *b, int cnt, int opt)
 		return ;
 	}
 	sorting_a(a, b, cnt, cmds);
-	rrr_controler(cmds[0], cmds[1], a, b, opt);
+	rrr_controler(cmds, a, b, opt);
 	sort_a(a, b, cmds[0], opt);
 	sort_b(a, b, cmds[1], opt);
 	sort_b(a, b, cmds[2] - cmds[1], opt);

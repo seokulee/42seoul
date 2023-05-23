@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:25:45 by seokklee          #+#    #+#             */
-/*   Updated: 2023/05/23 14:25:46 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/05/24 01:22:41 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	list_add_tail(t_list *lst, t_node *node)
 {
 	if (!lst || !node)
-		return;
+		return ;
 	if (lst->tail == NULL)
 	{
 		lst->head = node;

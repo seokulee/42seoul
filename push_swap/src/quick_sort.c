@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:26:06 by seokklee          #+#    #+#             */
-/*   Updated: 2023/05/23 14:26:07 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/05/24 01:23:42 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	swap_value(int *a, int *b)
 {
-	if (a == b)
-		return ;
 	int	tmp;
 
+	if (a == b)
+		return ;
 	tmp = *a;
 	*a = *b;
 	*b = tmp;

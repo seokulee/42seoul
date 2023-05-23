@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:24:17 by seokklee          #+#    #+#             */
-/*   Updated: 2023/05/23 15:55:45 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/05/24 01:13:55 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ void		sort_b(t_list *a, t_list *b, int cnt, int opt);
 void		sort_small_b(t_list *lst, int cnt);
 void		set_pivot(t_list *lst, int cnt, int *p1, int *p2);
 void		set_pivot5(t_list *lst, int cnt, int *p);
-void		rrr_controler(int ra_cmd, int rb_cmd, t_list *a, t_list *b, int opt);
+void		rrr_controler(int cmd[], t_list *a, t_list *b, int opt);
 void		quicksort(t_list *lst, t_node *head, t_node *tail);
 #endif

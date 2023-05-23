@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:26:22 by seokklee          #+#    #+#             */
-/*   Updated: 2023/05/23 14:26:23 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/05/24 01:25:08 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,9 @@ void	sort_small_b(t_list *lst, int cnt)
 	}
 	else if (cnt == 3)
 	{
-		sort_only3_b(lst, first,second, third);
+		sort_only3_b(lst, first, second, third);
 		return ;
 	}
-	
 }
 
 void	sort_only3_b(t_list *lst, int f, int s, int t)
@@ -108,6 +107,7 @@ void	rsrr_b(t_list *lst)
 	do_sb(lst);
 	do_rrb(lst);
 }
+
 void	rsrrs_b(t_list *lst)
 {
 	do_rb(lst);

@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:26:20 by seokklee          #+#    #+#             */
-/*   Updated: 2023/05/23 14:26:21 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/05/24 01:24:14 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,30 +78,30 @@ void	sort_total3_a(t_list	*lst, int f, int s, int t)
 void	sort_only3_a(t_list *lst, int f, int s, int t)
 {
 	if (f > s && f > t)
+	{
+		if (s > t)
 		{
-			if (s > t)
-			{
-				srsrr_a(lst);
-				do_sa(lst);
-			}
-			else
-				srsrr_a(lst);
-		}
-		else if (s > f && s > t)
-		{
-			if (f > t)
-			{
-				rsrr_a(lst);
-				do_sa(lst);
-			}
-			else
-				rsrr_a(lst);
+			srsrr_a(lst);
+			do_sa(lst);
 		}
 		else
+			srsrr_a(lst);
+	}
+	else if (s > f && s > t)
+	{
+		if (f > t)
 		{
-			if (f > s)
-				do_sa(lst);
+			rsrr_a(lst);
+			do_sa(lst);
 		}
+		else
+			rsrr_a(lst);
+	}
+	else
+	{
+		if (f > s)
+			do_sa(lst);
+	}
 }
 
 void	rsrr_a(t_list *lst)

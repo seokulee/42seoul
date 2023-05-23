@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/05/23 15:56:12 by seokklee          #+#    #+#              #
+#    Updated: 2023/05/23 15:56:13 by seokklee         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 NAME		= push_swap
@@ -16,7 +28,6 @@ SRC			= main.c \
 			list_del.c \
 			get_data.c \
 			ps_atoi.c \
-			ps_itoa.c \
 			str_split.c \
 			str_utils.c \
 			swap.c \

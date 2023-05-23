@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_data.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 14:25:35 by seokklee          #+#    #+#             */
-/*   Updated: 2023/05/23 14:25:36 by seokklee         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
 static char	**free_tab(char **tab);
@@ -21,6 +9,7 @@ int	get_data(int argc, char **argv, t_list *a)
 	int			i;
 	int			j;
 	char		**argvs;
+	long long	num;
 
 	i = 0;
 	while (++i < argc)
@@ -29,15 +18,15 @@ int	get_data(int argc, char **argv, t_list *a)
 		if (!*argvs)
 			return (0);
 		j = 0;
-		while (argvs[j])
+		while (argvs[j++])
 		{
-			if (!is_available(argvs[j]))
+			num = ps_atoi(argvs[j]);
+			if (num > 2147483647 || num < -2147483648 || !is_available(argvs[j]) || !check_dup(a, ps_atoi(num)))
+			{
+				free_tab(argvs);
 				return (0);
-			if (check_dup(a, ps_atoi(argvs[j])))
-				list_add_tail(a, node_new(ps_atoi(argvs[j])));
-			else
-				return (0);
-			j++;
+			}
+			list_add_tail(a, node_new(num));
 		}
 		free_tab(argvs);
 	}
@@ -61,8 +50,6 @@ static int	is_available(char *s)
 			return (0);
 		i++;
 	}
-	if (ps_atoi(s) > 2147483647 || ps_atoi(s) < -2147483648)
-		return (0);
 	return (1);
 }
 

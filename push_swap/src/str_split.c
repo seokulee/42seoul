@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:26:26 by seokklee          #+#    #+#             */
-/*   Updated: 2023/05/23 14:26:27 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/05/23 14:55:10 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,10 @@ static char	**mal_err(char **tab)
 	while (tab[i])
 	{
 		free(tab[i]);
+		tab[i] = NULL;
 		i++;
 	}
 	free(tab);
+	tab = NULL;
 	return (NULL);
 }

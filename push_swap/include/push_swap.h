@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:24:17 by seokklee          #+#    #+#             */
-/*   Updated: 2023/05/23 14:24:18 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:55:45 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void		lst_del(t_list *lst);
 int			get_data(int argc, char **argv, t_list *a);
 char		**str_split(char const *s, char c);
 long long	ps_atoi(const char *str);
-char		*ps_itoa(int n);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t		ft_strlen(const char *s);
 char		*ft_strchr(const char *s, int c);

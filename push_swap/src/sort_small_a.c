@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_small_a.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/23 14:26:20 by seokklee          #+#    #+#             */
+/*   Updated: 2023/05/23 14:26:21 by seokklee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	rsrr_a(t_list *lst);
 void	srsrr_a(t_list *lst);
-void	sort_total3(t_list	*lst, int f, int s, int t);
-void	sort_only3(t_list *lst, int f, int s, int t);
+void	sort_total3_a(t_list	*lst, int f, int s, int t);
+void	sort_only3_a(t_list *lst, int f, int s, int t);
 
 void	sort_small_a(t_list *lst, int cnt)
 {
@@ -24,17 +36,17 @@ void	sort_small_a(t_list *lst, int cnt)
 	}
 	if (cnt == 3 && lst->count == 3)
 	{
-		sort_total3(lst, first, second, third);
+		sort_total3_a(lst, first, second, third);
 		return ;
 	}
 	else if (cnt == 3)
 	{
-		sort_only3(lst, first, second, third);
+		sort_only3_a(lst, first, second, third);
 		return ;
 	}
 }
 
-void	sort_total3(t_list	*lst, int f, int s, int t)
+void	sort_total3_a(t_list	*lst, int f, int s, int t)
 {
 	if (f > s && f > t)
 	{
@@ -63,7 +75,7 @@ void	sort_total3(t_list	*lst, int f, int s, int t)
 	}
 }
 
-void	sort_only3(t_list *lst, int f, int s, int t)
+void	sort_only3_a(t_list *lst, int f, int s, int t)
 {
 	if (f > s && f > t)
 		{

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_data.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/23 14:25:35 by seokklee          #+#    #+#             */
+/*   Updated: 2023/05/23 14:25:36 by seokklee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static char	**free_tab(char **tab);
@@ -6,9 +18,9 @@ static int	check_dup(t_list *lst, int input);
 
 int	get_data(int argc, char **argv, t_list *a)
 {
-	int		i;
-	int		j;
-	char	**argvs;
+	int			i;
+	int			j;
+	char		**argvs;
 
 	i = 0;
 	while (++i < argc)
@@ -41,12 +53,16 @@ static int	is_available(char *s)
 		return (0);
 	if (s[i] == '+' || s[i] == '-')
 		i++;
+	if (!s[i])
+		return (0);
 	while (s[i])
 	{
 		if (s[i] < '0' || s[i] > '9')
 			return (0);
 		i++;
 	}
+	if (ps_atoi(s) > 2147483647 || ps_atoi(s) < -2147483648)
+		return (0);
 	return (1);
 }
 

@@ -29,7 +29,8 @@ SRC			= main.c \
 			sort_b.c \
 			sort_small_b.c \
 			set_pivot.c \
-			rrr_controler.c
+			rrr_controler.c \
+			quick_sort.c
 OBJ			= $(SRC:.c=.o)
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 OBJS		= $(addprefix $(OBJ_PATH), $(OBJ))

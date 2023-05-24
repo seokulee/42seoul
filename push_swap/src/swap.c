@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:26:32 by seokklee          #+#    #+#             */
-/*   Updated: 2023/05/24 01:24:36 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:34:59 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	do_sb(t_list *b)
 {
 	if (b->count < 2)
 		return ;
+	swap(b);
 	write(1, "sb\n", 3);
 }
 

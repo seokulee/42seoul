@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:23:09 by seokklee          #+#    #+#             */
-/*   Updated: 2023/05/24 01:30:03 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:32:33 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int	get_data(int argc, char **argv, t_list *a)
 	while (++i < argc)
 	{
 		argvs = str_split(argv[i], ' ');
-		if (!*argvs)
-			return (0);
 		j = 0;
 		while (argvs[j])
 		{

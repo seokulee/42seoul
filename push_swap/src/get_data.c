@@ -6,13 +6,13 @@
 /*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:23:09 by seokklee          #+#    #+#             */
-/*   Updated: 2023/05/24 17:32:33 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:42:37 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static char	**free_tab(char **tab);
+static int	free_tab(char **tab);
 static int	is_available(char *s);
 static int	check_dup(t_list *lst, int input);
 
@@ -26,14 +26,13 @@ int	get_data(int argc, char **argv, t_list *a)
 	while (++i < argc)
 	{
 		argvs = str_split(argv[i], ' ');
+		if (!*argvs)
+			return (free_tab(argvs));
 		j = 0;
 		while (argvs[j])
 		{
 			if (!is_available(argvs[j]) || !check_dup(a, ps_atoi(argvs[j])))
-			{
-				free_tab(argvs);
-				return (0);
-			}
+				return (free_tab(argvs));
 			list_add_tail(a, node_new(ps_atoi(argvs[j])));
 			j++;
 		}
@@ -64,7 +63,7 @@ static int	is_available(char *s)
 	return (1);
 }
 
-static char	**free_tab(char **tab)
+static int	free_tab(char **tab)
 {
 	size_t	i;
 
@@ -75,7 +74,7 @@ static char	**free_tab(char **tab)
 		i++;
 	}
 	free(tab);
-	return (NULL);
+	return (0);
 }
 
 static int	check_dup(t_list *lst, int input)

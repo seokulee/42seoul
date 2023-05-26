@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:20:49 by seokklee          #+#    #+#             */
-/*   Updated: 2023/05/25 15:10:36 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/05/26 21:55:01 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	checker(t_list *a, t_list *b)
 		line = get_next_line(0);
 	}
 	free(line);
-	if (is_sorted(a))
+	if (is_sorted(a) && !b->head)
 	{
 		write(1, "OK\n", 3);
 		return ;

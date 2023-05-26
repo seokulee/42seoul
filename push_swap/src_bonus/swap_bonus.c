@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:26:32 by seokklee          #+#    #+#             */
-/*   Updated: 2023/05/25 15:06:01 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/05/26 21:52:58 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,15 @@ void	do_sb(t_list *b)
 
 void	do_ss(t_list *a, t_list *b)
 {
-	swap(a);
-	swap(b);
+	if (a->count < 2 && b->count < 2)
+		return ;
+	else if (a->count < 2)
+		swap(b);
+	else if (b->count < 2)
+		swap(a);
+	else
+	{
+		swap(a);
+		swap(b);
+	}
 }

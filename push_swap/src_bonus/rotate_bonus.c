@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:26:10 by seokklee          #+#    #+#             */
-/*   Updated: 2023/05/25 15:09:31 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/05/26 21:53:14 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,15 @@ void	do_rb(t_list *b)
 
 void	do_rr(t_list *a, t_list *b)
 {
-	rotate(a);
-	rotate(b);
+	if (a->count < 2 && b->count < 2)
+		return ;
+	else if (a->count < 2)
+		rotate(b);
+	else if (b->count < 2)
+		rotate(a);
+	else
+	{
+		rotate(a);
+		rotate(b);
+	}
 }

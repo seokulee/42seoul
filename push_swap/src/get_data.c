@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 01:23:09 by seokklee          #+#    #+#             */
-/*   Updated: 2023/05/24 17:42:37 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/06/02 14:43:54 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ static int	is_available(char *s)
 			return (0);
 		i++;
 	}
+	if (ft_strlen(s) > 10)
+		return (0);
 	if (ps_atoi(s) > 2147483647 || ps_atoi(s) < -2147483648)
 		return (0);
 	return (1);

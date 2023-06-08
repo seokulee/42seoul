@@ -11,7 +11,11 @@ OBJ_B_PATH	= obj_bonus/
 SRC			= main.c \
 			ft_split.c \
 			str_utils.c \
-			error_msg.c
+			error_msg.c \
+			child_one_proc.c \
+			child_two_proc.c \
+			get_path.c \
+			get_cmd.c
 SRC_BONUS	= 
 OBJ			= $(SRC:.c=.o)
 OBJ_BONUS	= $(SRC_BONUS:.c=.o)

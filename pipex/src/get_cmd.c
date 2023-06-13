@@ -5,6 +5,8 @@ char	*get_cmd(char **path_tab, char *only_cmd)
 	char	*tmp;
 	char	*cmd;
 
+	if (!only_cmd)
+		return (NULL);
 	while (*path_tab)
 	{
 		tmp = ft_strjoin(*path_tab, "/");

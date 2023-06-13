@@ -13,6 +13,7 @@ void	init_pack(t_package *pack)
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_package	pack;
+	int	status;
 
 	if (argc < 5)
 		return (error_msg(ERR_ARGC));
@@ -32,6 +33,6 @@ int	main(int argc, char *argv[], char *envp[])
 	close(pack.pipe_fd[0]);
 	close(pack.pipe_fd[1]);
 	waitpid(pack.pid_1, NULL, 0);
-	waitpid(pack.pid_2, NULL, 0);
-	return (0);
+	waitpid(pack.pid_2, &status, 0);
+	return (WEXITSTATUS(status));
 }

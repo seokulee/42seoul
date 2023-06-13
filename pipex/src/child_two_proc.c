@@ -18,7 +18,7 @@ void	child_two_proc(t_package *pack, char *argv[], char *envp[])
 	if (!pack->cmd)
 	{
 		error_msg(ERR_CMD);
-		exit(1);
+		exit(127);
 	}
 	execve(pack->cmd, pack->cmd_tab, envp);
 }

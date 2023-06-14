@@ -18,18 +18,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	while (n--)
-	{
-		if (*s1 != *s2 || *s1 == '\0' || *s2 == '\0')
-			return ((unsigned char) *s1 - (unsigned char) *s2);
-		s1++;
-		s2++;
-	}
-	return (0);
-}
-
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	src_len;
@@ -75,4 +63,17 @@ size_t	ft_strlen(const char *s)
 	while (*s++)
 		len++;
 	return (len);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (unsigned char) c)
+			return ((char *) s);
+		s++;
+	}
+	if (*s == (unsigned char) c)
+		return ((char *) s);
+	return (NULL);
 }

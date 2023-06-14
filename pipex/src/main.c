@@ -13,7 +13,7 @@ void	init_pack(t_package *pack)
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_package	pack;
-	int	status;
+	int			status;
 
 	if (argc < 5)
 		return (error_msg(ERR_ARGC));

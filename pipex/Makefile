@@ -28,9 +28,10 @@ INCS		= ./include/
 all: $(OBJ_PATH) $(NAME)
 
 $(NAME): $(PIPE_LIB)
-	$(CC) $^ -o $@
+	$(CC) $(CFLAGS) $^ -o $@
 
 bonus: $(OBJ_B_PATH)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_BONUS)
 
 $(PIPE_LIB): $(OBJS)
 	$(AR) $(ARFLAGS) $@ $^

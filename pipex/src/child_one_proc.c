@@ -20,5 +20,6 @@ void	child_one_proc(t_package *pack, char *argv[], char *envp[])
 		error_msg(ERR_CMD);
 		exit(1);
 	}
-	execve(pack->cmd, pack->cmd_tab, envp);
+	if (execve(pack->cmd, pack->cmd_tab, envp) == -1)
+		error_msg_errno(ERR_EXEC);
 }

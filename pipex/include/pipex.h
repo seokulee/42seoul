@@ -12,12 +12,13 @@
 # include <string.h>
 # include <errno.h>
 
-# define ERR_ARGC "Not enogh arguments\n"
+# define ERR_ARGC "(Not enough / Too much) arguments\n"
 # define ERR_CMD "Cannot find commands\n"
 # define ERR_PIPE "PIPE error!"
 # define ERR_FORK "FORK error!"
 # define ERR_INPUT "FILE INPUT error!"
 # define ERR_OUTPUT "FILE OUTPUT error!"
+# define ERR_EXEC "EXECVE error!"
 
 typedef struct s_package
 {

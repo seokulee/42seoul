@@ -10,12 +10,26 @@ void	init_pack(t_package *pack)
 	pack->pipe_fd[1] = 0;
 }
 
+static char	**ft_free_tab(char **tab)
+{
+	size_t	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+	return (NULL);
+}
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_package	pack;
 	int			status;
 
-	if (argc < 5)
+	if (argc != 5)
 		return (error_msg(ERR_ARGC));
 	init_pack(&pack);
 	if (pipe(pack.pipe_fd) < 0)
@@ -34,5 +48,6 @@ int	main(int argc, char *argv[], char *envp[])
 	close(pack.pipe_fd[1]);
 	waitpid(pack.pid_1, NULL, 0);
 	waitpid(pack.pid_2, &status, 0);
+	ft_free_tab(pack.path_tab);
 	return (WEXITSTATUS(status));
 }

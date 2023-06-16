@@ -1,53 +1,22 @@
 #include "pipex.h"
 
-void	init_pack(t_package *pack)
-{
-	pack->path = NULL;
-	pack->path_tab = NULL;
-	pack->cmd = NULL;
-	pack->cmd_tab = NULL;
-	pack->pipe_fd[0] = 0;
-	pack->pipe_fd[1] = 0;
-}
-
-static char	**ft_free_tab(char **tab)
-{
-	size_t	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-	return (NULL);
-}
-
 int	main(int argc, char *argv[], char *envp[])
 {
-	t_package	pack;
-	int			status;
+	t_pack	pack;
 
 	if (argc != 5)
-		return (error_msg(ERR_ARGC));
-	init_pack(&pack);
-	if (pipe(pack.pipe_fd) < 0)
-		return (error_msg_errno(ERR_PIPE));
+		return (msg_error(ERR_ARGC));
+	ft_pipe(&pack.pipe_fd);
 	pack.path = get_path(envp);
 	pack.path_tab = ft_split(pack.path, ':');
-	pack.pid_1 = fork();
-	if (pack.pid_1 == 0)
-		child_one_proc(&pack, argv, envp);
-	pack.pid_2 = fork();
-	if (pack.pid_2 == 0)
-		child_two_proc(&pack, argv, envp);
-	if (pack.pid_1 == -1 || pack.pid_2 == -1)
-		return (error_msg_errno(ERR_FORK));
-	close(pack.pipe_fd[0]);
-	close(pack.pipe_fd[1]);
-	waitpid(pack.pid_1, NULL, 0);
-	waitpid(pack.pid_2, &status, 0);
-	ft_free_tab(pack.path_tab);
-	return (WEXITSTATUS(status));
+	ft_fork(&pack.first);
+	if (pack.first == 0)
+		child_first();
+	ft_fork(&pack.last);
+	if (pack.last == 0)
+		child_last();
+	ft_close(pack.pipe_fd[0]);
+	ft_close(pack.pipe_fd[1]);
+	wait(NULL);
+	waitpid
 }

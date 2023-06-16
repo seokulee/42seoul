@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:35:40 by seokklee          #+#    #+#             */
-/*   Updated: 2023/03/20 17:42:59 by seokklee         ###   ########seoul.kr  */
+/*   Updated: 2023/06/16 12:19:11 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 static size_t	ft_count_str(char const *s, char c);
-static char		**ft_mal_err(char **tab);
+static char		**ft_free_tab(char **tab);
 static void		ft_str_info(char const **s, char c, size_t *str_len);
 
 char	**ft_split(char const *s, char c)
@@ -36,7 +36,7 @@ char	**ft_split(char const *s, char c)
 		{
 			tab[i] = (char *)malloc(sizeof(char) * (str_len + 1));
 			if (!tab[i])
-				return (ft_mal_err(tab));
+				return (ft_free_tab(tab));
 			ft_strlcpy(tab[i++], s - str_len, str_len + 1);
 		}
 	}
@@ -73,7 +73,7 @@ static size_t	ft_count_str(char const *s, char c)
 	return (cnt);
 }
 
-static char	**ft_mal_err(char **tab)
+static char	**ft_free_tab(char **tab)
 {
 	size_t	i;
 

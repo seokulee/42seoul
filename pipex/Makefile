@@ -23,8 +23,13 @@ SRC_BONUS	= main_bonus.c \
 			functions_bonus.c \
 			errors_bonus.c \
 			exe_cmd_bonus.c \
+			exe_cmd_hd_bonus.c \
 			ft_split_bonus.c \
-			str_utils_bonus.c 
+			str_utils_bonus.c \
+			get_stdin_bonus.c \
+			get_next_line_bonus.c \
+			get_next_line_utils_bonus.c \
+
 OBJ			= $(SRC:.c=.o)
 OBJ_BONUS	= $(SRC_BONUS:.c=.o)
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))

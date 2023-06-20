@@ -7,6 +7,7 @@
 # include <stdio.h>
 # include <sys/wait.h>
 # include <fcntl.h>
+# include <limits.h>
 
 /* ---error msg--- */
 # define ERR_ARGC "Numbers of Arguments are not available"
@@ -20,6 +21,10 @@
 # define ERR_CMD "command not found"
 # define ERR_WAIT "Wait error!"
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
+
 typedef struct s_pack
 {
 	char	**argv;
@@ -31,10 +36,12 @@ typedef struct s_pack
 	int		output_file;
 	pid_t	pid[256];
 	int		pipe_fd[256][2];
+	int		here_doc;
+	char	*escape;
 	int		status;
 }	t_pack;
 
-/* functions */
+/* --functions-- */
 void	exe_cmd(t_pack *pack, int level);
 
 size_t	ft_strlen(const char *s);
@@ -62,4 +69,20 @@ char	**ft_free_tab(char **tab);
 
 int		error_msg(char *msg);
 int		error_msg_no(char *msg);
+
+/* --bonus-- */
+void	get_stdin(t_pack *pack);
+void	exe_cmd_hd(t_pack *pack, int level);
+void	ft_execve_hd(t_pack *pack);
+void	ft_output_file_hd(char *file_name, int *fd);
+
+/* --gnl-- */
+char	*get_next_line(int fd);
+char	*ft_strdup(const char *s1);
+char	*ft_get_line(int fd, char **backup, char *buffer);
+size_t	ft_find_nl_idx(char *backup_fd);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strchr(const char *s, int c);
+char	*ft_seperate(int fd, char **backup);
+char	*ft_eof(int fd, char **backup);
 #endif

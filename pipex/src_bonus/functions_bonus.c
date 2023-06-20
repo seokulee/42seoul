@@ -60,6 +60,20 @@ void	ft_execve(t_pack *pack)
 		error_msg_no(ERR_EXECVE);
 }
 
+void	ft_execve_hd(t_pack *pack)
+{
+	char	*cmd;
+	char	**cmd_tab;
+
+	ft_connect_fd(pack);
+	cmd_tab = ft_split(pack->argv[pack->cmd_seq + 3], ' ');
+	cmd = get_cmd(pack->path_tab, cmd_tab[0]);
+	if (!cmd)
+		error_msg_no(ERR_CMD);
+	if (execve(cmd, cmd_tab, pack->envp) < 0)
+		error_msg_no(ERR_EXECVE);
+}
+
 void	ft_open(char *file_name, int *fd)
 {
 	*fd = open(file_name, O_RDONLY);
@@ -70,6 +84,13 @@ void	ft_open(char *file_name, int *fd)
 void	ft_output_file(char *file_name, int *fd)
 {
 		*fd = open(file_name, O_CREAT | O_TRUNC | O_RDWR, 0644);
+		if (*fd < 0)
+			error_msg_no(ERR_OUTPUT);
+}
+
+void	ft_output_file_hd(char *file_name, int *fd)
+{
+		*fd = open(file_name, O_CREAT | O_APPEND | O_RDWR, 0644);
 		if (*fd < 0)
 			error_msg_no(ERR_OUTPUT);
 }

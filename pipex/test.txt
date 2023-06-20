@@ -1,15 +1,4 @@
-total 128
--rw-r--r--@  1 seokklee  staff   1119  6 17 15:30 Makefile
-drwxr-xr-x   3 seokklee  staff     96  6 16 14:25 include
-drwxr-xr-x@ 12 seokklee  staff    384  6 17 15:30 obj
--rwxr-xr-x@  1 seokklee  staff  34930  6 17 15:30 pipex
--rw-r--r--@  1 seokklee  staff  15768  6 17 15:30 pipex.a
-drwxr-xr-x  12 seokklee  staff    384  6 17 15:29 src
-drwxr-xr-x@  3 seokklee  staff     96  6 17 15:29 src_bonus
--rw-r--r--@  1 seokklee  staff     78  6 16 16:49 test.txt
--rw-r--r--@  1 seokklee  staff      2  6 17 15:30 testout.txt
-
-HEllo
-HEllo HEllo
-Hello World
-Hello dfas
+hello World
+hi 
+thanks
+dsafsd

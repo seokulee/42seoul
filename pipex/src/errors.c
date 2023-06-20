@@ -1,13 +1,13 @@
 #include "pipex.h"
 
-int	msg_error(char *msg)
+int	error_msg(char *msg)
 {
 	write(2, msg, ft_strlen(msg));
 	return (1);
 }
-
-void	msg_error_no(char *msg)
+int	error_msg_no(char *msg)
 {
 	perror(msg);
 	exit(1);
 }
+

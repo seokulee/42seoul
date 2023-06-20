@@ -55,7 +55,7 @@ void	ft_execve(t_pack *pack)
 	cmd_tab = ft_split(pack->argv[pack->cmd_seq + 2], ' ');
 	cmd = get_cmd(pack->path_tab, cmd_tab[0]);
 	if (!cmd)
-		error_msg(ERR_CMD);
+		error_msg_no(ERR_CMD);
 	if (execve(cmd, cmd_tab, pack->envp) < 0)
 		error_msg_no(ERR_EXECVE);
 }

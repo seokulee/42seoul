@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/21 13:37:23 by seokklee          #+#    #+#             */
+/*   Updated: 2023/06/21 13:37:24 by seokklee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 int	main(int argc, char *argv[], char *envp[])
@@ -11,7 +23,6 @@ int	main(int argc, char *argv[], char *envp[])
 	{
 		get_stdin(&pack);
 		exe_cmd_hd(&pack, 0);
-		unlink("hd_rd");
 	}
 	else
 		exe_cmd(&pack, 0);

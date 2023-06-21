@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/21 13:37:47 by seokklee          #+#    #+#             */
+/*   Updated: 2023/06/21 13:51:37 by seokklee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PIPEX_H
 # define PIPEX_H
 
@@ -38,6 +50,7 @@ typedef struct s_pack
 	int		pipe_fd[256][2];
 	int		here_doc;
 	char	*escape;
+	char	*tmp;
 	int		status;
 }	t_pack;
 
@@ -52,14 +65,14 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 void	ft_pipe(t_pack *pack, int level);
 void	ft_fork(t_pack *pack, int level);
-void	ft_dup2(int	from_fd, int to_fd);
+void	ft_dup2(int from_fd, int to_fd);
 void	ft_execve(t_pack *pack);
 void	ft_open(char *file_name, int *fd);
 void	ft_output_file(char *file_name, int *fd);
 void	ft_close_pipes(t_pack *pack, int n);
 void	ft_close(int fd);
 void	ft_wait_child(t_pack *pack, int level);
-void	ft_wait();
+void	ft_wait(void);
 
 char	*get_cmd(char **path_tab, char *cmd_uncertain);
 char	*get_path(char *envp[]);
@@ -75,6 +88,8 @@ void	get_stdin(t_pack *pack);
 void	exe_cmd_hd(t_pack *pack, int level);
 void	ft_execve_hd(t_pack *pack);
 void	ft_output_file_hd(char *file_name, int *fd);
+void	heredoc_file_ctr(t_pack *pack);
+void	ft_connect_fd(t_pack *pack);
 
 /* --gnl-- */
 char	*get_next_line(int fd);
@@ -85,4 +100,5 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strchr(const char *s, int c);
 char	*ft_seperate(int fd, char **backup);
 char	*ft_eof(int fd, char **backup);
+
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split_bonus.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/21 13:37:01 by seokklee          #+#    #+#             */
+/*   Updated: 2023/06/21 13:45:46 by seokklee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 static size_t	ft_count_str(char const *s, char c);
@@ -80,10 +92,8 @@ static size_t	ft_count_str(char const *s, char c)
 				s++;
 		}
 		else
-		{
 			while (*s && *s != c)
 				s++;
-		}
 		cnt++;
 		while (*s && *s == c)
 			s++;
@@ -104,4 +114,3 @@ char	**ft_free_tab(char **tab)
 	free(tab);
 	return (NULL);
 }
-

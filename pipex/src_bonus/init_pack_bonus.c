@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_pack_bonus.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/21 13:37:20 by seokklee          #+#    #+#             */
+/*   Updated: 2023/06/21 13:49:22 by seokklee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 void	init_pack(t_pack *pack, int argc, char *argv[], char *envp[])
@@ -11,10 +23,7 @@ void	init_pack(t_pack *pack, int argc, char *argv[], char *envp[])
 	{
 		pack->n_cmd = argc - 4;
 		pack->escape = ft_strjoin(argv[2], "\n");
-		pack->input_file = open("hd_rd", O_CREAT | O_APPEND | O_RDWR, 0644);
-		if (pack->input_file < 0)
-			error_msg_no(ERR_OUTPUT);
-		ft_output_file_hd(pack->argv[pack->n_cmd + 3], &pack->output_file);
+		heredoc_file_ctr(pack);
 		pack->here_doc = 1;
 	}
 	else
@@ -24,4 +33,11 @@ void	init_pack(t_pack *pack, int argc, char *argv[], char *envp[])
 		ft_output_file(pack->argv[pack->n_cmd + 2], &pack->output_file);
 		pack->here_doc = 0;
 	}
+}
+
+void	ft_output_file(char *file_name, int *fd)
+{
+	*fd = open(file_name, O_CREAT | O_TRUNC | O_RDWR, 0644);
+	if (*fd < 0)
+		error_msg_no(ERR_OUTPUT);
 }

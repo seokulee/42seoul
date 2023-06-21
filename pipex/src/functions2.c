@@ -1,35 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_stdin_bonus.c                                  :+:      :+:    :+:   */
+/*   functions2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 13:37:14 by seokklee          #+#    #+#             */
-/*   Updated: 2023/06/21 13:37:15 by seokklee         ###   ########.fr       */
+/*   Created: 2023/06/21 13:41:52 by seokklee          #+#    #+#             */
+/*   Updated: 2023/06/21 13:45:00 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	get_stdin(t_pack *pack)
+void	ft_close_pipes(t_pack *pack, int n)
 {
-	char	*line;
+	int	i;
 
-	write(1, "here_doc> ", 10);
-	line = get_next_line(0);
-	while (line)
+	i = 0;
+	while (i < n)
 	{
-		if (!ft_strncmp(line, pack->escape, ft_strlen(line)))
-			break ;
-		write(pack->input_file, line, ft_strlen(line));
-		free(line);
-		write(1, "here_doc> ", 10);
-		line = get_next_line(0);
+		ft_close(pack->pipe_fd[i][0]);
+		ft_close(pack->pipe_fd[i][1]);
+		i++;
 	}
-	free(line);
-	free(pack->escape);
-	ft_close(pack->input_file);
-	ft_open(pack->tmp, &pack->input_file);
-	unlink(pack->tmp);
+}
+
+void	ft_close(int fd)
+{
+	if (close(fd) < 0)
+		error_msg_no(ERR_CLOSE);
+}
+
+void	ft_wait_child(t_pack *pack, int level)
+{
+	int	i;
+
+	i = 0;
+	while (i++ < level)
+		ft_wait();
+	waitpid(pack->pid[level], &pack->status, 0);
+}
+
+void	ft_wait(void)
+{
+	if (wait(NULL) < 0)
+		error_msg_no(ERR_WAIT);
 }

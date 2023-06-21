@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/06/21 13:37:28 by seokklee          #+#    #+#              #
+#    Updated: 2023/06/21 13:50:27 by seokklee         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 NAME		= pipex
@@ -12,6 +24,7 @@ SRC			= main.c \
 			get_cmd.c \
 			get_path.c \
 			functions.c \
+			functions2.c \
 			errors.c \
 			exe_cmd.c \
 			ft_split.c \
@@ -21,6 +34,7 @@ SRC_BONUS	= main_bonus.c \
 			get_cmd_bonus.c \
 			get_path_bonus.c \
 			functions_bonus.c \
+			functions2_bonus.c \
 			errors_bonus.c \
 			exe_cmd_bonus.c \
 			exe_cmd_hd_bonus.c \
@@ -29,6 +43,7 @@ SRC_BONUS	= main_bonus.c \
 			get_stdin_bonus.c \
 			get_next_line_bonus.c \
 			get_next_line_utils_bonus.c \
+			heredoc_file_ctr_bonus.c
 
 OBJ			= $(SRC:.c=.o)
 OBJ_BONUS	= $(SRC_BONUS:.c=.o)

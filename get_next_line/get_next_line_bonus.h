@@ -7,7 +7,7 @@
 #  define BUFFER_SIZE 1024
 # endif
 
-char	*get_next_line(int fd);
+char	*get_next_line_gnl(int fd);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
 char	*ft_get_line(int fd, char **backup, char *buffer);

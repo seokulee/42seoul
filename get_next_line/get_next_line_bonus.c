@@ -50,7 +50,7 @@ char	*ft_get_line(int fd, char **backup, char *buffer)
 			return (NULL);
 		}
 		buffer[read_size] = '\0';
-		backup[fd] = ft_strjoin(backup[fd], buffer);
+		backup[fd] = ft_strjoin_gnl(backup[fd], buffer);
 		if (!backup[fd])
 			return (NULL);
 	}

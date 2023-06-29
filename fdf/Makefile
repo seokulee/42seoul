@@ -10,24 +10,21 @@ SRC_B_PATH	= src_bonus/
 OBJ_PATH	= obj/
 OBJ_B_PATH	= obj_bonus/
 SRC			= main.c \
-			draw.c \
 			ft_atoi.c \
 			ft_atoi_hex.c \
 			ft_functions.c \
 			ft_split.c \
 			get_next_line.c \
 			get_next_line_utils.c \
-			in_key.c \
 			init.c \
 			init_map.c \
 			init_mlx.c \
-			init_image.c \
 			measure_map.c \
 			msg_error_no.c \
 			parse_map.c \
 			print_map.c \
-			ft_string.c \
-			bresenham.c
+			ft_string.c 
+			
 SRC_BONUS	= 
 
 OBJ			= $(SRC:.c=.o)

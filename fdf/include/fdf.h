@@ -25,29 +25,19 @@ typedef struct s_map
 {
 	char	*name;
 	int		fd;
-	int		abscissa;
-	int		ordinate;
-	int		**altitude;
+	int		col;
+	int		row;
+	int		**z;
 	int		**color;
 }	t_map;
 
 typedef struct s_mlx
 {
-	int		win_x_max;
-	int		win_y_max;
+	int		win_col;
+	int		win_row;
 	void	*mlx_ptr;
 	void	*win_ptr;
-	int		gap;
 }	t_mlx;
-
-typedef struct s_image
-{
-	void	*img_ptr;
-	int		bits_per_pixel;
-	int		size_line;
-	int		endian;
-	char	*pos;
-}	t_image;
 
 void	ft_open(char *file_name, int *fd);
 void	ft_close(int fd);
@@ -74,16 +64,12 @@ size_t	ft_strlen(const char *s);
 int		ft_atoi(const char *str);
 int		ft_atoi_hex(const char *str);
 
-void	init(t_map *map, t_mlx *mlx, t_image *image, char *argv[]);
+void	init(t_map *map, t_mlx *mlx, char *argv[]);
 void	init_map(t_map *map, char *argv[]);
 void	init_mlx(t_mlx *mlx, t_map *map);
-void	init_image(t_image *image, t_mlx *mlx);
 void	measure_map(t_map *map);
 void	parse_map(t_map *map);
-void	draw(t_map *map, t_mlx *mlx, t_image *image);
 void	msg_error_no(char *msg, int no);
-int		in_key(int key, t_map *map, t_mlx *mlx, t_image *image);
 
 void	print_map(t_map *map);
-void	bresenham(float x1, float y1, float x2, float y2, t_mlx *mlx, t_map *map, t_image *image);
 #endif

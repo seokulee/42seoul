@@ -6,13 +6,25 @@ void	print_map(t_map *map)
 	int	j;
 
 	i = 0;
-	printf("ord : %d abs : %d\n", map->ordinate, map->abscissa);
-	printf("---  0   1   2   3   4   5   6   7   8   9  10 ---\n");
-	while (i < map->ordinate)
+	printf("ord : %d abs : %d\n", map->row, map->col);
+	while (i < map->row)
 	{
 		j = 0;
 		printf("%d  ",i);
-		while (j < map->abscissa)
+		while (j < map->col)
+		{
+			printf("%d ",map->z[i][j]);
+			j++;
+		}
+		i++;
+		printf("\n");
+	}
+	i = 0;
+	while (i < map->row)
+	{
+		j = 0;
+		printf("%d  ",i);
+		while (j < map->col)
 		{
 			printf("%d ",map->color[i][j]);
 			j++;

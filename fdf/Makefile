@@ -1,69 +1,72 @@
-CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
-NAME		= fdf
-AR			= ar
-ARFLAGS 	= crs
-MLX_PATH	= ./minilibx_mms_20210621
-MLX			= libmlx.dylib
-SRC_PATH	= src/
-SRC_B_PATH	= src_bonus/
-OBJ_PATH	= obj/
-OBJ_B_PATH	= obj_bonus/
-SRC			= main.c \
-			ft_atoi.c \
-			ft_atoi_hex.c \
-			ft_functions.c \
-			ft_split.c \
-			get_next_line.c \
-			get_next_line_utils.c \
-			init.c \
-			init_map.c \
-			init_mlx.c \
-			measure_map.c \
-			msg_error_no.c \
-			parse_map.c \
-			print_map.c \
-			ft_string.c 
-			
-SRC_BONUS	= 
+CC		= cc
+CFLAGS	= -Wall -Werror -Wextra
+AR		= ar
+RM		= rm
+RMFLAGS	= -rf
+INCS	= -I $(FDF_HDR_DIR) -I $(LIBFT_HDR) -I $(MLX_HDR)
 
-OBJ			= $(SRC:.c=.o)
-OBJ_BONUS	= $(SRC_BONUS:.c=.o)
-SRCS		= $(addprefix $(SRC_PATH), $(SRC))
-SRCS_BONUS	= $(addprefix $(SRC_B_PATH), $(SRC_BONUS))
-OBJS		= $(addprefix $(OBJ_PATH), $(OBJ))
-OBJS_BONUS	= $(addprefix $(OBJ_B_PATH), $(OBJ_BONUS))
-INCS		= ./include/
+NAME	= fdf
 
-ifdef WITH_BONUS
-    OBJF = $(OBJS_BONUS)
-else
-    OBJF = $(OBJS)
-endif
+# OTHER LIBRARY
+LIBFT	= $(LIBFT_DIR)libft.a
+LIBFT_DIR = ./libft/
+LIBFT_HDR = $(LIBFT_DIR)include/
 
-all: $(OBJ_PATH) $(NAME)
+MLX		= libmlx.dylib
+MLX_DIR	= ./minilibx/
+MLX_HDR	= $(MLX_DIR)
 
-$(NAME): $(OBJF)
-	make all -C $(MLX_PATH)/
-	mv $(MLX_PATH)/$(MLX) ./
-	$(CC) $(CFLAGS) $^ $(MLX) -o $@
+# HEADERS
+FDF_HDRS	= fdf.h
+FDF_HDR_DIR	= ./include/
+FDF_HDR		= $(addprefix $(FDF_HDR_DIR), $(FDF_HDRS))
 
-bonus: $(OBJ_B_PATH) $(OBJS_BONUS)
-	@make WITH_BONUS=1 all
+# src
+SRC		= main.c \
+		functions.c \
+		get_next_line.c \
+		read_map.c \
+		init.c \
+		draw.c \
+		color.c
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	$(CC) $(CFLAGS) -c $^ -o $@ -I $(INCS)
-$(OBJ_B_PATH)%.o: $(SRC_B_PATH)%.c
-	$(CC) $(CFLAGS) -c $^ -o $@ -I $(INCS)
-$(OBJ_PATH):
-	mkdir $(OBJ_PATH)
-$(OBJ_B_PATH):
-	mkdir $(OBJ_B_PATH)
+SRC_DIR	= ./src/
+SRCS	= $(addprefix $(SRC_DIR), $(SRC))
+
+# obj
+OBJ		= $(SRC:.c=.o)
+OBJ_DIR	= obj/
+OBJS	= $(addprefix $(OBJ_DIR), $(OBJ))
+
+all: $(NAME)
+
+$(NAME): $(LIBFT) $(MLX) $(OBJ_DIR) $(OBJS)
+	$(CC) $(CFLAGS) $(LIBFT) $(MLX) $(INCS) $(OBJS) -o $@
+
+$(OBJ_DIR):
+	mkdir $(OBJ_DIR)
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
+
+$(LIBFT):
+	make -C $(LIBFT_DIR)
+
+$(MLX):
+	make -C $(MLX_DIR)
+	mv $(MLX_DIR)$(MLX) ./
+
 clean:
-	rm -rf $(OBJ_PATH) $(OBJ_B_PATH) $(PIPE_LIB)
-	rm -rf $(MLX)
-	make clean -C $(MLX_PATH)
-fclean:		clean
-	rm -f $(NAME)
-re:			fclean all
+	make -C $(LIBFT_DIR) clean
+	make -C $(MLX_DIR) clean
+	$(RM) $(RMFLAGS) $(OBJ_DIR)
+
+fclean:	clean
+	make -C $(LIBFT_DIR) fclean
+	make -C $(MLX_DIR) clean
+	$(RM) $(RMFLAGS) $(MLX)
+	$(RM) $(RMFLAGS) $(NAME)
+
+re: fclean all
+
 .PHONY: all clean fclean re

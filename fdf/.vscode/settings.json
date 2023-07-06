@@ -1,8 +1,7 @@
 {
+	"C_Cpp.dimInactiveRegions": true,
 	"files.associations": {
-		"fcntl.h": "c",
-		"math.h": "c",
-		"complex": "c",
-		"typeinfo": "c"
+		"typeinfo": "c",
+		"fdf.h": "c"
 	}
 }

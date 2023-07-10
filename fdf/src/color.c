@@ -10,7 +10,6 @@ int	get_color(t_spot *s, t_spot *f, t_spot cur)
 	int		b;
 	double	ratio;
 
-
 	if (cur.clr == f->clr)
 		return (cur.clr);
 	if ((f->x - s->x) > (f->y - s->y))

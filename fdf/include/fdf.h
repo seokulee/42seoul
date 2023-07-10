@@ -45,6 +45,10 @@ typedef struct s_map
 	int		*clr_arr;
 	char	*name;
 	int		fd;
+	int		z_dividor;
+	int		zoom;
+	int		x_offset;
+	int		y_offset;
 }	t_map;
 
 typedef struct s_fdf
@@ -85,11 +89,18 @@ size_t	ft_find_nl_idx(char *backup_fd);
 char	*ft_seperate(int fd, char **backup);
 char	*ft_eof(int fd, char **backup);
 
+/* transform */
+t_spot	*transform_coordinates(t_spot *s, t_fdf *fdf);
+t_spot	*new_spot(int x, int y, t_fdf *fdf);
+void	change_zoom(int key, t_fdf *fdf);
+
 /* draw */
 void	draw(t_fdf *fdf);
-t_spot	*new_spot(int x, int y, t_fdf *fdf);
 
 /* color */
 int	get_color(t_spot *s, t_spot *f, t_spot cur);
+
+/* inout */
+int	key_pressed(int key, void *param);
 
 #endif

@@ -13,6 +13,8 @@ void	read_map(t_map	*map, char *argv[])
 	ft_open(map->name, &map->fd);
 	measure_map(map);
 	parse_map(map);
+	map->zoom = 200;
+	map->z_dividor = 2;
 }
 static void	measure_map(t_map *map)
 {

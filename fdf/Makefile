@@ -28,7 +28,9 @@ SRC		= main.c \
 		read_map.c \
 		init.c \
 		draw.c \
-		color.c
+		color.c \
+		transform.c \
+		input.c 
 
 SRC_DIR	= ./src/
 SRCS	= $(addprefix $(SRC_DIR), $(SRC))
@@ -46,7 +48,7 @@ $(NAME): $(LIBFT) $(MLX) $(OBJ_DIR) $(OBJS)
 $(OBJ_DIR):
 	mkdir $(OBJ_DIR)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(FDF_HDR)
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
 $(LIBFT):

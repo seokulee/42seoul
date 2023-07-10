@@ -11,7 +11,8 @@ int	main(int argc, char *argv[])
 	read_map(&map, argv);
 	fdf = init_fdf(&map);
 	draw(fdf);
+	mlx_key_hook(fdf->win, key_pressed, fdf);
 	mlx_loop(fdf->mlx);
-	//free(fdf);
+	free(fdf);
 	return (0);
 }

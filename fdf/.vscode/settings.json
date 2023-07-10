@@ -2,6 +2,7 @@
 	"C_Cpp.dimInactiveRegions": true,
 	"files.associations": {
 		"typeinfo": "c",
-		"fdf.h": "c"
+		"fdf.h": "c",
+		"chrono": "cpp"
 	}
 }

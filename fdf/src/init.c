@@ -1,7 +1,6 @@
 #include "fdf.h"
 
-void	init_map(t_fdf *fdf);
-static void	get_center(t_spot *s);
+static void	init_camera(t_fdf *fdf);
 
 t_fdf	*init_fdf(t_map *map)
 {
@@ -12,7 +11,8 @@ t_fdf	*init_fdf(t_map *map)
 	if (!fdf->mlx)
 		terminate(ERR_MLX, 1);
 	mlx_get_screen_size(fdf->mlx, &fdf->win_width, &fdf->win_height);
-	fdf->win = mlx_new_window(fdf->mlx, fdf->win_width, fdf->win_height, map->name);
+	fdf->win = mlx_new_window \
+	(fdf->mlx, fdf->win_width, fdf->win_height, map->name);
 	if (!fdf->win)
 		terminate(ERR_WIN, 1);
 	fdf->img = mlx_new_image(fdf->mlx, fdf->win_width, fdf->win_height);
@@ -22,8 +22,26 @@ t_fdf	*init_fdf(t_map *map)
 	if (!fdf->addr)
 		terminate(ERR_ADDR, 1);
 	fdf->map = map;
-	init_map(fdf);
+	init_camera(fdf);
+	fdf->mouse = (t_mouse *)malloc(sizeof(t_mouse) * 1);
+	if (!fdf->mouse)
+		terminate(ERR_MEM, 1);
 	return (fdf);
+}
+
+t_spot	*init_spot(int x, int y, t_fdf *fdf)
+{
+	t_spot	*spot;
+
+	spot = (t_spot *)malloc(sizeof(t_spot) * 1);
+	spot->x = x;
+	spot->y = y;
+	spot->z = fdf->map->z_arr[y * fdf->map->x_size + x];
+	if (fdf->map->clr_arr[y * fdf->map->x_size + x] != -1)
+		spot->clr = fdf->map->clr_arr[y * fdf->map->x_size + x];
+	else
+		spot->clr = DEFAULT_CLR;
+	return (spot);
 }
 
 void	init_bresenham(t_spot *s, t_spot *f, t_spot *step, t_spot *diff)
@@ -46,30 +64,23 @@ void	init_bresenham(t_spot *s, t_spot *f, t_spot *step, t_spot *diff)
 		step->y = 1;
 }
 
-void	init_map(t_fdf *fdf)
+static void	init_camera(t_fdf *fdf)
 {
-	t_spot	center;
+	t_camera	*camera;
 
-	center.x = fdf->map->x_size;
-	center.x = fdf->map->y_size;
-	get_center(&center);
-	fdf->map->x_offset = (fdf->map->x_size / 2) - center.x;
-	fdf->map->y_offset = (fdf->map->y_size / 2) - center.y;
-	while (fdf->map->zoom * center.x * 2 > fdf->win_width)
-		fdf->map->zoom -= 5;
-	fdf->map->zoom = fdf->map->zoom / 2;
-	//while (fdf->map->zoom / fdf->map->z_dividor * center.y * 2 - fdf->map->z_max < 0)
-	//	fdf->map->z_dividor++;
-	//fdf->map->z_dividor /= 2;
-}
-
-static void	get_center(t_spot *s)
-{
-	int	prev_x;
-	int	prev_y;
-
-	prev_x = s->x;
-	prev_y = s->y;
-	s->x = (prev_x - prev_y) * cos(0.523599) / 2;
-	s->y = (prev_x + prev_y) * sin(0.523599) / 2;
+	camera = (t_camera *)malloc(sizeof(t_camera) * 1);
+	if (!camera)
+		terminate(ERR_MEM, 1);
+	camera->alpha = 0;
+	camera->beta = 0;
+	camera->gamma = 0;
+	camera->zoom = 200;
+	camera->x_offset = (fdf->win_width / 2) - fdf->map->x_size;
+	camera->y_offset = (fdf->win_height / 2) - fdf->map->y_size;
+	while (fdf->map->x_size * camera->zoom + camera->x_offset > fdf->win_width)
+		camera->zoom -= 5;
+	camera->zoom /= 2;
+	camera->z_zoom = 1;
+	camera->projection = ISOMETRIC;
+	fdf->camera = camera;
 }

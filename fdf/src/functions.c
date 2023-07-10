@@ -72,9 +72,3 @@ size_t	ft_count_str(char const *s, char c)
 	}
 	return (cnt);
 }
-
-void	terminate(char *msg, int exit_num)
-{
-	write(2, msg, ft_strlen(msg));
-	exit(exit_num);
-}

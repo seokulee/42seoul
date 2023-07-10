@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-static int	lerp(int s, int f, int ratio);
+static int		lerp(int s, int f, int ratio);
 static double	get_ratio(int s, int f, int cur);
 
 int	get_color(t_spot *s, t_spot *f, t_spot cur)
@@ -31,10 +31,11 @@ static double	get_ratio(int s, int f, int cur)
 	ratio = (double)(cur - s) / (f - s);
 	return (ratio);
 }
+
 static int	lerp(int s, int f, int ratio)
 {
-	int ret;
+	int	ret;
 
-	ret = (int) (s * (1 - ratio) + f * ratio);
+	ret = (int)(s * (1 - ratio) + f * ratio);
 	return (ret);
 }

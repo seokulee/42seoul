@@ -1,9 +1,9 @@
 #include "fdf.h"
 
-char	*ft_get_line(int fd, char **backup, char *buffer);
-size_t	ft_find_nl_idx(char *backup_fd);
-char	*ft_seperate(int fd, char **backup);
-char	*ft_eof(int fd, char **backup);
+static char		*ft_get_line(int fd, char **backup, char *buffer);
+static size_t	ft_find_nl_idx(char *backup_fd);
+static char		*ft_seperate(int fd, char **backup);
+static char		*ft_eof(int fd, char **backup);
 
 char	*get_next_line(int fd)
 {
@@ -34,7 +34,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-char	*ft_get_line(int fd, char **backup, char *buffer)
+static char	*ft_get_line(int fd, char **backup, char *buffer)
 {
 	ssize_t	read_size;
 	char	*line;
@@ -61,7 +61,7 @@ char	*ft_get_line(int fd, char **backup, char *buffer)
 	return (line);
 }
 
-char	*ft_seperate(int fd, char **backup)
+static char	*ft_seperate(int fd, char **backup)
 {
 	size_t	idx;
 	char	*tmp;
@@ -86,7 +86,7 @@ char	*ft_seperate(int fd, char **backup)
 	return (line);
 }
 
-char	*ft_eof(int fd, char **backup)
+static char	*ft_eof(int fd, char **backup)
 {
 	char	*line;
 
@@ -101,7 +101,7 @@ char	*ft_eof(int fd, char **backup)
 	return (line);
 }
 
-size_t	ft_find_nl_idx(char *backup_fd)
+static size_t	ft_find_nl_idx(char *backup_fd)
 {
 	size_t	idx;
 

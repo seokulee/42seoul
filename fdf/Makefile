@@ -23,14 +23,17 @@ FDF_HDR		= $(addprefix $(FDF_HDR_DIR), $(FDF_HDRS))
 
 # src
 SRC		= main.c \
+		change_key.c \
+		change_mouse.c \
+		color.c \
+		draw.c \
 		functions.c \
 		get_next_line.c \
-		read_map.c \
 		init.c \
-		draw.c \
-		color.c \
+		io_cntl.c \
+		read_map.c \
+		rotate.c \
 		transform.c \
-		input.c 
 
 SRC_DIR	= ./src/
 SRCS	= $(addprefix $(SRC_DIR), $(SRC))

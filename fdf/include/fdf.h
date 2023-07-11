@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/11 15:10:19 by seokklee          #+#    #+#             */
+/*   Updated: 2023/07/11 15:10:20 by seokklee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
 # define FDF_H
 
@@ -39,6 +51,7 @@
 
 /* color */
 # define DEFAULT_CLR 0xffffff
+# define HIGHLIGHT_CLR 0xff0000
 
 /* ERR_MSG */
 # define ERR_ARGC "Usage : ./fdf <filename>"
@@ -100,6 +113,7 @@ typedef struct s_map
 	int		*clr_arr;
 	char	*name;
 	int		fd;
+	int		is_color;
 }	t_map;
 
 typedef struct s_fdf
@@ -162,6 +176,9 @@ void	rotate_z(int *x, int *y, double gamma);
 
 /* color */
 int		get_color(t_spot *s, t_spot *f, t_spot cur);
+int		check_map_color(t_map *map);
+int		lerp(int s, int f, double ratio);
+double	get_ratio(int s, int f, int cur);
 
 void	io_cntl(t_fdf *fdf);
 

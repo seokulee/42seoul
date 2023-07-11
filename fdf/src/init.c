@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/11 15:11:26 by seokklee          #+#    #+#             */
+/*   Updated: 2023/07/11 15:11:27 by seokklee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 static void	init_camera(t_fdf *fdf);
@@ -32,6 +44,10 @@ t_fdf	*init_fdf(t_map *map)
 t_spot	*init_spot(int x, int y, t_fdf *fdf)
 {
 	t_spot	*spot;
+	double	ratio;
+	int		r;
+	int		g;
+	int		b;
 
 	spot = (t_spot *)malloc(sizeof(t_spot) * 1);
 	spot->x = x;
@@ -40,7 +56,13 @@ t_spot	*init_spot(int x, int y, t_fdf *fdf)
 	if (fdf->map->clr_arr[y * fdf->map->x_size + x] != -1)
 		spot->clr = fdf->map->clr_arr[y * fdf->map->x_size + x];
 	else
-		spot->clr = DEFAULT_CLR;
+	{
+		ratio = get_ratio(fdf->map->z_min, fdf->map->z_max, spot->z);
+		r = lerp(DEFAULT_CLR, (HIGHLIGHT_CLR >> 16) & 0xff, ratio);
+		g = lerp(DEFAULT_CLR, (HIGHLIGHT_CLR >> 8) & 0xff, ratio);
+		b = lerp(DEFAULT_CLR, (HIGHLIGHT_CLR) & 0xff, ratio);
+		spot->clr = ((r << 16) | (g << 8) | (b));
+	}
 	return (spot);
 }
 
@@ -75,8 +97,8 @@ static void	init_camera(t_fdf *fdf)
 	camera->beta = 0;
 	camera->gamma = 0;
 	camera->zoom = 200;
-	camera->x_offset = (fdf->win_width / 2) - fdf->map->x_size;
-	camera->y_offset = (fdf->win_height / 2) - fdf->map->y_size;
+	camera->x_offset = (fdf->win_width / 3);
+	camera->y_offset = (fdf->win_height / 3);
 	while (fdf->map->x_size * camera->zoom + camera->x_offset > fdf->win_width)
 		camera->zoom -= 5;
 	camera->zoom /= 2;

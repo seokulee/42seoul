@@ -1,7 +1,16 @@
-#include "fdf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/11 15:11:17 by seokklee          #+#    #+#             */
+/*   Updated: 2023/07/11 15:11:18 by seokklee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static int		lerp(int s, int f, int ratio);
-static double	get_ratio(int s, int f, int cur);
+#include "fdf.h"
 
 int	get_color(t_spot *s, t_spot *f, t_spot cur)
 {
@@ -22,7 +31,7 @@ int	get_color(t_spot *s, t_spot *f, t_spot cur)
 	return ((r << 16) | (g << 8) | (b));
 }
 
-static double	get_ratio(int s, int f, int cur)
+double	get_ratio(int s, int f, int cur)
 {
 	double	ratio;
 
@@ -32,10 +41,24 @@ static double	get_ratio(int s, int f, int cur)
 	return (ratio);
 }
 
-static int	lerp(int s, int f, int ratio)
+int	lerp(int s, int f, double ratio)
 {
 	int	ret;
 
 	ret = (int)(s * (1 - ratio) + f * ratio);
 	return (ret);
+}
+
+int	check_map_color(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->x_size * map->y_size)
+	{
+		if (map->clr_arr[i] != -1)
+			return (1);
+		i++;
+	}
+	return (0);
 }

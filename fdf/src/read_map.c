@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/11 15:11:34 by seokklee          #+#    #+#             */
+/*   Updated: 2023/07/11 15:11:35 by seokklee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 static void	measure_map(t_map *map);
@@ -11,8 +23,11 @@ void	read_map(t_map	*map, char *argv[])
 	if (ft_strncmp(&map->name[ft_strlen(map->name) - 3], "fdf", 4))
 		terminate(ERR_FILENAME, 1);
 	ft_open(map->name, &map->fd);
+	map->z_min = 2147483647;
+	map->z_max = -2147483648;
 	measure_map(map);
 	parse_map(map);
+	map->is_color = check_map_color(map);
 }
 
 static void	measure_map(t_map *map)
@@ -64,8 +79,6 @@ static void	fill_altitude(t_map *map, int y, char *line)
 	int		i;
 	char	**num_clr;
 
-	map->z_min = 2147483647;
-	map->z_max = -2147483648;
 	num_clrs = ft_split(line, ' ');
 	i = 0;
 	while (num_clrs[i])

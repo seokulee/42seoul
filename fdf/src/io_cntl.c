@@ -1,16 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   io_cntl.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/11 15:11:29 by seokklee          #+#    #+#             */
+/*   Updated: 2023/07/11 15:11:30 by seokklee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 static int	key_pressed(int key, void *param);
 static int	mouse_pressed(int mouse, int x, int y, void *param);
-static int	mouse_released(int mouse, int x, int y, void *param);
 static int	mouse_moved(int x, int y, void *param);
+static int	mouse_released(int mouse, int x, int y, void *param);
 
 void	io_cntl(t_fdf *fdf)
 {
-	mlx_hook(fdf->win, 2, 0, key_pressed, fdf);
-	mlx_hook(fdf->win, 4, 0, mouse_pressed, fdf);
 	mlx_hook(fdf->win, 6, 0, mouse_moved, fdf);
+	mlx_hook(fdf->win, 4, 0, mouse_pressed, fdf);
 	mlx_hook(fdf->win, 5, 0, mouse_released, fdf);
+	mlx_hook(fdf->win, 2, 0, key_pressed, fdf);
 }
 
 static int	key_pressed(int key, void *param)

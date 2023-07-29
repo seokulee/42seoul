@@ -1,5 +1,6 @@
 CC		= cc
 CFLAGS	= -Wall -Werror -Wextra
+# CFLAGS	= -Wall -Werror -Wextra -fsanitize=thread -g
 AR		= ar
 RM		= rm
 RMFLAGS	= -rf

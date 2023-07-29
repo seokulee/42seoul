@@ -39,6 +39,7 @@ void	final_condition(t_args *args, t_philo *philos)
 			}
 			pthread_mutex_unlock(&args->mutex_eat);
 			i++;
+			usleep(1000);
 		}
 		if (args->die)
 			break ;
@@ -49,13 +50,23 @@ void	final_condition(t_args *args, t_philo *philos)
 void	check_all_eat(t_args *args, t_philo *philos)
 {
 	int i;
+	int	eaten_all;
 
 	i = 0;
-	while (args->num_must_eat != 0 && i < args->num_philos
-	&& philos[i].cnt_eat >= args->num_must_eat)
+	eaten_all = 1;
+	if (args->num_must_eat == 0)
+		return ;
+	while (args->num_must_eat != 0 && i < args->num_philos)
+	{
+		pthread_mutex_lock(&args->mutex_eat);
+		if (philos[i].cnt_eat < args->num_must_eat)
+			eaten_all = 0;
+		pthread_mutex_unlock(&args->mutex_eat);
 		i++;
-	if (i == args->num_philos)
-		args->done_eat = 1;
+	}
+	pthread_mutex_lock(&args->mutex_eat);
+	args->done_eat = eaten_all;
+	pthread_mutex_unlock(&args->mutex_eat);
 }
 
 void	end_routine(t_args *args, t_philo *philos)

@@ -5,14 +5,13 @@
 #                                                     +:+ +:+         +:+      #
 #    By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/08/06 11:23:25 by seokklee          #+#    #+#              #
-#    Updated: 2023/08/06 11:23:26 by seokklee         ###   ########.fr        #
+#    Created: 2023/08/06 11:22:34 by seokklee          #+#    #+#              #
+#    Updated: 2023/08/06 11:30:37 by seokklee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		= cc
 CFLAGS	= -Wall -Werror -Wextra
-# CFLAGS	= -Wall -Werror -Wextra -fsanitize=thread -g
 AR		= ar
 RM		= rm
 RMFLAGS	= -rf
@@ -20,17 +19,17 @@ INCS	= -I $(HDR_DIR)
 NAME	= philo
 
 # HEADERS
-HDRS	= philo.h
+HDRS	= philo_bonus.h
 HDR_DIR	= ./include/
 HDR		= $(addprefix $(HDR_DIR), $(HDRS))
 
 # src
-SRC		= main.c \
-		init.c \
-		utils.c \
-		ft_atoi.c \
-		thread.c \
-		routine.c \
+SRC		= main_bonus.c \
+		init_bonus.c \
+		utils_bonus.c \
+		ft_atoi_bonus.c \
+		routine_bonus.c
+
 
 SRC_DIR	= ./src/
 SRCS	= $(addprefix $(SRC_DIR), $(SRC))

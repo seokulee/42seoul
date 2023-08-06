@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   thread.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/06 11:23:20 by seokklee          #+#    #+#             */
+/*   Updated: 2023/08/06 11:23:21 by seokklee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-void	final_condition(t_args *args, t_philo *philos);
+void	check_condition(t_args *args, t_philo *philos);
 void	check_all_eat(t_args *args, t_philo *philos);
 void	end_routine(t_args *args, t_philo *philos);
 
@@ -17,12 +29,12 @@ int	start_routine(t_args *args, t_philo *philos)
 			return (1);
 		i++;
 	}
-	final_condition(args, philos);
+	check_condition(args, philos);
 	end_routine(args, philos);
 	return (0);
 }
 
-void	final_condition(t_args *args, t_philo *philos)
+void	check_condition(t_args *args, t_philo *philos)
 {
 	int	i;
 

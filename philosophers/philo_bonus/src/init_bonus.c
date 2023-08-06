@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/06 11:23:15 by seokklee          #+#    #+#             */
-/*   Updated: 2023/08/06 11:23:16 by seokklee         ###   ########.fr       */
+/*   Created: 2023/08/06 11:21:59 by seokklee          #+#    #+#             */
+/*   Updated: 2023/08/06 11:22:00 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
-int	init_mutex(t_args *args);
-int	init_philos(t_args *args);
+int	init_sem(t_args *args);
 
 int	init(t_args *args, int argc, char *argv[])
 {
@@ -25,56 +24,24 @@ int	init(t_args *args, int argc, char *argv[])
 	args->time_to_sleep = ft_atoi(argv[4]);
 	args->num_must_eat = 0;
 	args->start_time = 0;
-	args->die = 0;
 	if (argc == 6)
 	{
 		args->num_must_eat = ft_atoi(argv[5]);
 		if (args->num_must_eat <= 0)
 			return (1);
 	}
-	if (init_mutex(args))
-		return (1);
-	if (init_philos(args))
+	if (init_sem(args))
 		return (1);
 	return (0);
 }
 
-int	init_mutex(t_args *args)
+int	init_sem(t_args *args)
 {
-	int	i;
-
-	if (pthread_mutex_init(&args->mutex_eat, NULL))
-		return (1);
-	if (pthread_mutex_init(&args->mutex_print, NULL))
-		return (1);
-	args->forks = malloc(sizeof(pthread_mutex_t) * args->num_philos);
-	if (!args->forks)
-		return (1);
-	i = 0;
-	while (i < args->num_philos)
-	{
-		if (pthread_mutex_init(&args->forks[i], NULL))
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-int	init_philos(t_args *args)
-{
-	int	i;
-
-	args->philos = malloc(sizeof(t_philo) * args->num_philos);
-	if (!args->philos)
-		return (1);
-	i = 0;
-	while (i < args->num_philos)
-	{
-		args->philos[i].id = i;
-		args->philos[i].last_eat = 0;
-		args->philos[i].cnt_eat = 0;
-		args->philos[i].args = args;
-		i++;
-	}
+	sem_unlink("sem_fork");
+	sem_unlink("sem_print");
+	sem_unlink("sem_die");
+	args->fork = sem_open("sem_fork", O_CREAT, 0644, args->num_philos);
+	args->print = sem_open("sem_print", O_CREAT, 0644, 1);
+	args->die = sem_open("sem_die", O_CREAT, 0644, 1);
 	return (0);
 }

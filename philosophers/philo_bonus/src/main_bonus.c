@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/06 11:23:17 by seokklee          #+#    #+#             */
-/*   Updated: 2023/08/06 11:23:18 by seokklee         ###   ########.fr       */
+/*   Created: 2023/08/06 11:21:50 by seokklee          #+#    #+#             */
+/*   Updated: 2023/08/06 11:31:37 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 int	terminate(char *err, int n)
 {
@@ -27,7 +27,7 @@ int	main(int argc, char *argv[])
 	memset(&args, 0, sizeof(t_args));
 	if (init(&args, argc, argv))
 		return (terminate(ERR_ARGS, 1));
-	if (start_routine(&args, (&args)->philos))
-		return (terminate(ERR_ROUTINE, 1));
+	if (start_routine(&args))
+		return (1);
 	return (0);
 }

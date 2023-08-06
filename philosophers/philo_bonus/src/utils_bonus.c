@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/06 11:23:17 by seokklee          #+#    #+#             */
-/*   Updated: 2023/08/06 11:23:18 by seokklee         ###   ########.fr       */
+/*   Created: 2023/08/06 11:22:07 by seokklee          #+#    #+#             */
+/*   Updated: 2023/08/06 11:22:08 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
-int	terminate(char *err, int n)
+long long	get_current_time(void)
 {
-	printf("%s", err);
-	return (n);
+	struct timeval	tv;
+	long long		time;
+
+	gettimeofday(&tv, NULL);
+	time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+	return (time);
 }
 
-int	main(int argc, char *argv[])
+void	print_status(const char *s, t_args *args)
 {
-	t_args	args;
-
-	if (argc != 5 && argc != 6)
-		return (terminate(ERR_ARGC, 1));
-	memset(&args, 0, sizeof(t_args));
-	if (init(&args, argc, argv))
-		return (terminate(ERR_ARGS, 1));
-	if (start_routine(&args, (&args)->philos))
-		return (terminate(ERR_ROUTINE, 1));
-	return (0);
+	sem_wait(args->print);
+		printf(s, get_current_time() - args->start_time, args->id + 1);
+	sem_post(args->print);
 }

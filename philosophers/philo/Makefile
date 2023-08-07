@@ -6,7 +6,7 @@
 #    By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/06 11:23:25 by seokklee          #+#    #+#              #
-#    Updated: 2023/08/06 11:23:26 by seokklee         ###   ########.fr        #
+#    Updated: 2023/08/07 12:17:44 by seokklee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,8 @@ clean:
 fclean:	clean
 	$(RM) $(RMFLAGS) $(NAME)
 
-re: fclean all
+re:
+	make fclean
+	make all
 
 .PHONY: all clean fclean re

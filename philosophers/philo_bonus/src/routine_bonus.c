@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 11:22:05 by seokklee          #+#    #+#             */
-/*   Updated: 2023/08/06 11:36:52 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/08/07 10:03:36 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ int	routine(t_args *args)
 	args->last_eat = get_current_time();
 	if (pthread_create(&(args->tid), NULL, monitor, args))
 		return (1);
-	if (args->id % 2)
-		usleep(10 * 1000);
 	while (1)
 	{
 		print_status("%lld %d is thinking\n", args);
@@ -68,7 +66,7 @@ int	routine(t_args *args)
 		{
 			if (get_current_time() - time_start_sleeping >= args->time_to_sleep)
 				break ;
-			usleep(800);
+			usleep(1000);
 		}
 	}
 	return (0);
@@ -89,7 +87,7 @@ int	eat(t_args *args)
 	{
 		if (get_current_time() - args->last_eat >= args->time_to_eat)
 			break ;
-		usleep(800);
+		usleep(1000);
 	}
 	sem_post(args->fork);
 	sem_post(args->fork);
@@ -132,6 +130,6 @@ void	*monitor(void *param)
 			exit(1);
 		}
 		sem_post(args->die);
-		usleep(100);
+		usleep(5 * 1000);
 	}
 }

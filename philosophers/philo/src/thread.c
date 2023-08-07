@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 11:23:20 by seokklee          #+#    #+#             */
-/*   Updated: 2023/08/06 11:23:21 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/08/07 09:48:36 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	check_condition(t_args *args, t_philo *philos)
 	while (!args->done_eat)
 	{
 		i = 0;
-		while((i < args->num_philos) && (!args->die))
+		while ((i < args->num_philos) && (!args->die))
 		{
 			pthread_mutex_lock(&args->mutex_eat);
 			if (get_current_time() - philos[i].last_eat > args->time_to_die)
@@ -61,7 +61,7 @@ void	check_condition(t_args *args, t_philo *philos)
 
 void	check_all_eat(t_args *args, t_philo *philos)
 {
-	int i;
+	int	i;
 	int	eaten_all;
 
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 11:22:07 by seokklee          #+#    #+#             */
-/*   Updated: 2023/08/06 11:22:08 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/08/07 09:51:03 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ long long	get_current_time(void)
 void	print_status(const char *s, t_args *args)
 {
 	sem_wait(args->print);
-		printf(s, get_current_time() - args->start_time, args->id + 1);
+	printf(s, get_current_time() - args->start_time, args->id + 1);
 	sem_post(args->print);
 }

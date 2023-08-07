@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 11:23:13 by seokklee          #+#    #+#             */
-/*   Updated: 2023/08/06 11:23:14 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/08/07 09:48:00 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_atoi(const char *str)
 	num = 0;
 	while (*str >= '0' && *str <= '9')
 	{
-		if (num > LONG_DET || ((num == LONG_DET) &&
+		if (num > LONG_DET || ((num == LONG_DET) && \
 		((neg == 0 && (*str - '0' > 7)) || (neg == 1 && (*str - '0' > 8)))))
 			return (LONG_MAX + neg);
 		else

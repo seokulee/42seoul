@@ -6,12 +6,12 @@
 /*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 11:22:32 by seokklee          #+#    #+#             */
-/*   Updated: 2023/08/06 11:22:33 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/08/07 09:52:22 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef PHILO_BONUS_H
+# define PHILO_BONUS_H
 
 # include <string.h>
 # include <unistd.h>
@@ -45,15 +45,16 @@ typedef struct s_args
 	int			cnt_eat;
 }	t_args;
 
-/* ft_atoi.c */
-int	ft_atoi(const char *str);
+/* ft_atoi_bonus.c */
+int			ft_atoi(const char *str);
 
-int	init(t_args *args, int argc, char *argv[]);
+/* init_bonus.c */
+int			init(t_args *args, int argc, char *argv[]);
 
-/* routine.c */
-int	start_routine(t_args *args);
+/* routine_bonus.c */
+int			start_routine(t_args *args);
 
-/* utils.c */
+/* utils_bonus.c */
 long long	get_current_time(void);
 void		print_status(const char *s, t_args *args);
 

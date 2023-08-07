@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 11:23:18 by seokklee          #+#    #+#             */
-/*   Updated: 2023/08/06 11:23:19 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/08/07 09:48:22 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	sleeping(t_args *args, t_philo *philo);
 
 void	*routine(void *param)
 {
-	t_philo *philo;
+	t_philo	*philo;
 	t_args	*args;
 
 	philo = (t_philo *)param;
@@ -29,7 +29,7 @@ void	*routine(void *param)
 	{
 		print_status("%lld %d is thinking\n", philo->id, args);
 		if (eat(args, philo))
-			break;
+			break ;
 		sleeping(args, philo);
 	}
 	return (0);
@@ -39,7 +39,7 @@ int	eat(t_args *args, t_philo *philo)
 {
 	pthread_mutex_lock(&args->forks[philo->id]);
 	print_status("%lld %d has taken a fork\n", philo->id, args);
-	if(philo->id == right_of(philo))
+	if (philo->id == right_of(philo))
 		return (1);
 	pthread_mutex_lock(&args->forks[right_of(philo)]);
 	print_status("%lld %d has taken a fork\n", philo->id, args);

@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 11:23:22 by seokklee          #+#    #+#             */
-/*   Updated: 2023/08/06 11:23:23 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/08/07 09:49:14 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,6 @@ long long	get_current_time(void)
 	gettimeofday(&tv, NULL);
 	time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 	return (time);
-}
-
-int	left_of(t_philo *philo)
-{
-	return ((philo->id + philo->args->num_philos - 1) % philo->args->num_philos);
 }
 
 int	right_of(t_philo *philo)

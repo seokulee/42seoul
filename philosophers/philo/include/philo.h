@@ -6,7 +6,7 @@
 /*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 11:23:08 by seokklee          #+#    #+#             */
-/*   Updated: 2023/08/06 11:23:09 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/08/07 09:51:50 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define ERR_ARGS "Can't run with this arguments\n"
 # define ERR_ROUTINE "Routine Failed\n"
 
-typedef struct s_philo t_philo;
+typedef struct s_philo	t_philo;
 
 typedef struct s_args
 {
@@ -41,11 +41,11 @@ typedef struct s_args
 	int				die;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	mutex_eat;
-	pthread_mutex_t mutex_print;
+	pthread_mutex_t	mutex_print;
 	t_philo			*philos;
 }	t_args;
 
-typedef	struct s_philo
+typedef struct s_philo
 {
 	int			id;
 	pthread_t	tid;
@@ -55,17 +55,18 @@ typedef	struct s_philo
 }	t_philo;
 
 /* ft_atoi.c */
-int	ft_atoi(const char *str);
-int	init(t_args *args, int argc, char *argv[]);
-int	start_routine(t_args *args, t_philo *philos);
+int			ft_atoi(const char *str);
+
+/* init.c */
+int			init(t_args *args, int argc, char *argv[]);
+int			start_routine(t_args *args, t_philo *philos);
 
 /* routine.c */
-void	*routine(void *param);
+void		*routine(void *param);
 
 /* utils.c */
 long long	get_current_time(void);
-int		left_of(t_philo *philo);
-int		right_of(t_philo *philo);
-void	print_status(const char *s, int id, t_args *args);
+int			right_of(t_philo *philo);
+void		print_status(const char *s, int id, t_args *args);
 
 #endif

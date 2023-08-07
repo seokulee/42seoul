@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
+/*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:11:19 by seokklee          #+#    #+#             */
-/*   Updated: 2023/07/11 15:11:20 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/08/06 20:24:35 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	draw(t_fdf *fdf)
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img, 0, 0);
 }
 
-/* dirty code of det 
+/* dirty code of det
 	if (diff.x > diff.y)
 	{
 		det = (2 * diff.y) - diff.x;

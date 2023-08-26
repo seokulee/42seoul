@@ -34,6 +34,7 @@ char	*ft_strjoin_gnl(char const *s1, char const *s2)
 	ft_strlcat(str, s2, s1_len + s2_len + 1);
 	return (str);
 }
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	s_len;

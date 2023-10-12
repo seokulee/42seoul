@@ -6,7 +6,7 @@
 #    By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/23 13:10:43 by seokklee          #+#    #+#              #
-#    Updated: 2023/03/31 11:42:27 by seokklee         ###   ########.fr        #
+#    Updated: 2023/10/09 17:43:55 by seokklee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,13 +39,15 @@ $(NAME):	$(OBJS)
 all:		$(NAME)
 
 clean:
-	rm -f $(OBJS) 
+	rm -f $(OBJS)
 	make clean -C $(LIBFT)
 
 fclean:		clean
 	rm -f $(NAME)
 	make fclean -C $(LIBFT)
 
-re:			fclean all
+re:
+	fclean
+	all
 
 .PHONY: all clean fclean re

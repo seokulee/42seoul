@@ -1,9 +1,38 @@
 #include "get_next_line_bonus.h"
 
+char	*ft_strjoin_gnl(char *s1, char *s2);
 char	*ft_get_line(int fd, char **backup, char *buffer);
 size_t	ft_find_nl_idx(char *backup_fd);
 char	*ft_seperate(int fd, char **backup);
 char	*ft_eof(int fd, char **backup);
+
+char	*ft_strjoin_gnl(char *s1, char *s2)
+{
+	char	*str;
+	size_t	s1_len;
+	size_t	s2_len;
+	size_t	i;
+
+	if (!s1 || !s2)
+		return (NULL);
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	str = (char *)malloc(sizeof(char) * s1_len + s2_len + 1);
+	if (!str)
+	{
+		free(s1);
+		return (NULL);
+	}
+	i = -1;
+	while (++i < s1_len)
+		str[i] = s1[i];
+	i--;
+	while (++i < s1_len + s2_len)
+		str[i] = s2[i - s1_len];
+	str[i] = '\0';
+	free(s1);
+	return (str);
+}
 
 char	*get_next_line(int fd)
 {

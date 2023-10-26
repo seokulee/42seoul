@@ -12,6 +12,8 @@
 # define ERR_FILE "Error: Check file extension and type identifier"
 # define ERR_INIT "Error: init failed"
 
+# define KEY_ESC 53
+
 typedef struct	s_vec
 {
 	double	x;
@@ -63,7 +65,7 @@ typedef struct	s_scene
 	t_light		**lights;
 	t_object	**objects;
 	size_t		cnt_ambient;
-	size_t		cnt_cameras;
+	size_t		cnt_camera;
 	size_t		cnt_lights;
 	size_t		cnt_objects;
 }	t_scene;
@@ -82,6 +84,8 @@ typedef struct	s_data
 	void	*mlx;
 	void	*mlx_win;
 	t_img	*mlx_img;
+	int		width;
+	int		height;
 }	t_data;
 
 
@@ -89,6 +93,7 @@ t_scene	*init_scene(void);
 t_data	*init_data(void);
 
 char	**ft_free_tab(char **tab);
+void	free_all(t_scene *scene);
 
 int		read_rt_file(t_scene *scene, char *open_file);
 
@@ -109,5 +114,7 @@ int		ft_close(int fd);
 int		err_put_str(char *str, int ret);
 
 void	draw(t_data *data, t_scene *scene);
+
+void	event_handler(t_data *data, t_scene *scene);
 
 #endif

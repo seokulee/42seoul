@@ -32,7 +32,7 @@ SRCS_PARSING	= init.c \
 
 SRCS_DRAW		= draw.c
 
-# SRCS_EVENT		=
+SRCS_EVENT		= event_handler.c
 
 SRCS_UTILS		= get_next_line.c \
 				get_next_line_utils.c \

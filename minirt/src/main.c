@@ -15,4 +15,7 @@ int	main(int argc, char *argv[])
 		return (err_put_str(ERR_INIT, 1));
 	/* free */
 	draw(data, scene);
+	event_handler(data, scene);
+	mlx_loop(data->mlx);
+	free_all(scene);
 }

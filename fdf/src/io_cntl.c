@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   io_cntl.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seokklee <seokklee@student.42seoul.kr M    +#+  +:+       +#+        */
+/*   By: seokklee <seokklee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:11:29 by seokklee          #+#    #+#             */
-/*   Updated: 2023/07/11 15:11:30 by seokklee         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:17:59 by seokklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	key_pressed(int key, void *param)
 
 	fdf = (t_fdf *)param;
 	if (key == ESCAPE)
-		free_all(param);
+		 free_all(param);
 	else if (key >= LEFT_AR && key <= UP_AR)
 		change_offset(key, fdf);
 	else if (key == PLUS || key == MINUS)

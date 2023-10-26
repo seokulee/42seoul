@@ -26,7 +26,7 @@ static int	control_identifier(t_scene *scene, char *id)
 	if (!ft_strcmp(id, "A"))
 		scene->cnt_ambient++;
 	else if (!ft_strcmp(id, "C"))
-		scene->cnt_cameras++;
+		scene->cnt_camera++;
 	else if (!ft_strcmp(id, "L"))
 		scene->cnt_lights++;
 	else if (!ft_strcmp(id, "sp") || !ft_strcmp(id, "pl") || \
@@ -69,7 +69,7 @@ static int	check_components(t_scene *scene)
 {
 	if (scene->cnt_ambient != 1)
 		return (-1);
-	if (scene->cnt_cameras != 1)
+	if (scene->cnt_camera != 1)
 		return (-1);
 	if (scene->cnt_lights < 1)
 		return (-1);

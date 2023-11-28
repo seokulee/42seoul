@@ -1,8 +1,13 @@
 {
 	"files.associations": {
-		"minirt.h": "c",
-		"mlx.h": "c",
-		"__locale": "c",
-		"locale": "c"
+		"struct.h": "c",
+		"stdio.h": "c",
+		"math_vec.h": "c",
+		"print.h": "c",
+		"scene.h": "c",
+		"trace.h": "c",
+		"structure.h": "c",
+		"error.h": "c",
+		"libft.h": "c"
 	}
 }

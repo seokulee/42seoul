@@ -1,59 +1,63 @@
-#include "Contact.hpp"
+#include <iostream>
+#include "PhoneBook.hpp"
 
-	Contact::Contact() {}
-	Contact::~Contact() {}
-	void Contact::makeNewContact(Contact *contact) {
-		std::string input;
+Contact::Contact()
+{
+    this->mFirstName = "";
+    this->mLastName = "";
+    this->mNickname = "";
+    this->mPhoneNumber = "";
+    this->mDarkestSecret = "";
+}
 
-		std::cout << "Firts name? " << std::endl;
-		while (input.length() < 1)
-			std::getline(std::cin, input);
-		contact->firstName = input;
-		input.erase();
-		std::cout << "Last name? " << std::endl;
-		while (input.length() < 1)
-			std::getline(std::cin, input);
-		contact->lastName = input;
-		input.erase();
-		std::cout << "Nickname? " << std::endl;
-		while (input.length() < 1)
-			std::getline(std::cin, input);
-		contact->nickName = input;
-		input.erase();
-		std::cout << "Phone number " << std::endl;
-		while (input.length() < 1)
-			std::getline(std::cin, input);
-		contact->phoneNumber = input;
-		input.erase();
-		std::cout << "Darkest secret? " << std::endl;
-		while (input.length() < 1)
-			std::getline(std::cin, input);
-		contact->darkestSecret = input;
-		input.erase();
-	}
+Contact::~Contact() {}
 
-	void Contact::displayInline(int index) {
-	std::cout << std::right << std::setw(10) << (index + 1) << "|";
-	if (firstName.size() > 10)
-		std::cout << std::right << std::setw(9) << firstName.substr(0, 9) << "." << "|";
-	else
-		std::cout << std::right << std::setw(10) << firstName.substr(0, 10) << "|";
-	if (lastName.size() > 10)
-		std::cout << std::right << std::setw(9) << lastName.substr(0, 9) << "." << "|";
-	else
-		std::cout << std::right << std::setw(10) << lastName.substr(0, 10) << "|";
-	if (nickName.size() > 10)
-		std::cout << std::right << std::setw(9) << nickName.substr(0, 9) << "." << std::endl;
-	else
-		std::cout << std::right << std::setw(10) << nickName.substr(0, 10) << std::endl;
-	}
+void Contact::SetFirstName(std::string mFirstName)
+{
+    this->mFirstName = mFirstName;
+}
 
-	void Contact::displayInformation() {
-		std::cout << "#### INFORMATION DETAILS ####" << std::endl;
-		std::cout << "First Name : " << firstName << std::endl;
-		std::cout << "Last Name : " << lastName << std::endl;
-		std::cout << "Nickname : " << nickName << std::endl;
-		std::cout << "Phone Number : " << phoneNumber << std::endl;
-		std::cout << "Darkest Secret : " << darkestSecret << std::endl;
-		std::cout << "#### INFORMATION DETAILS ####" << std::endl;
-	}
+void Contact::SetLastName(std::string mLastName)
+{
+    this->mLastName = mLastName;
+}
+
+void Contact::SetNickName(std::string mNickname)
+{
+    this->mNickname = mNickname;
+}
+
+void Contact::SetPhoneNumber(std::string mPhoneNumber)
+{
+    this->mPhoneNumber = mPhoneNumber;
+}
+
+void Contact::SetDarkestSecret(std::string mDarkestSecret)
+{
+    this->mDarkestSecret = mDarkestSecret;
+}
+
+const std::string Contact::GetFirstName() const
+{
+    return this->mFirstName;
+}
+
+const std::string Contact::GetLastName() const
+{
+    return this->mLastName;
+}
+
+const std::string Contact::GetNickName() const
+{
+    return this->mNickname;
+}
+
+const std::string Contact::GetPhoneNumber() const
+{
+    return this->mPhoneNumber;
+}
+
+const std::string Contact::GetDarkestSecret() const
+{
+    return this->mDarkestSecret;
+}

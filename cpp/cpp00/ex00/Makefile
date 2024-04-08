@@ -6,8 +6,8 @@ AR = ar
 RM = rm
 RMFLAGS = -rf
 
-SRC = Megaphone.cpp
-SRC_DIR = ./
+SRC = megaphone.cpp
+# SRC_DIR = ./
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 
 OBJ = $(SRCS:.cpp=.o)
@@ -23,12 +23,13 @@ $(OBJS_DIR):
 	mkdir $(OBJS_DIR)
 
 $(OBJS_DIR)%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $^ -o $@
 
 clean:
 	$(RM) $(RMFLAGS) $(OBJS_DIR)
 
-fclean: clean
+fclean:
+	make clean
 	$(RM) $(RMFLAGS) $(NAME)
 
 re :

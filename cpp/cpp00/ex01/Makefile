@@ -6,10 +6,9 @@ AR = ar
 RM = rm
 RMFLAGS = -rf
 
-SRC = main.cpp\
-	PhoneBook.cpp\
-	Contact.cpp
-
+SRC = PhoneBook.cpp \
+	Contact.cpp \
+	main.cpp
 SRC_DIR = ./
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 
@@ -17,26 +16,28 @@ OBJ = $(SRCS:.cpp=.o)
 OBJS_DIR = obj/
 OBJS = $(addprefix $(OBJS_DIR), $(OBJ))
 
-HDR = Contact.hpp\
-	PhoneBook.hpp
-HDRS_DIR = ./
-HDRS = $(addprefix $(HDRS_DIR), $(HDR))
+INCLUDE = -I./
+HDR = PhoneBook.hpp \
+	Contact.hpp
+HDR_DIR = ./
+HDRS = $(addprefix $(HDR_DIR), $(HDR))
 
 all : $(NAME)
 
 $(NAME) : $(OBJS_DIR) $(OBJS) $(HDRS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $@
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $@ $(INCLUDE)
 
 $(OBJS_DIR):
 	mkdir $(OBJS_DIR)
 
 $(OBJS_DIR)%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $^ -o $@
 
 clean:
 	$(RM) $(RMFLAGS) $(OBJS_DIR)
 
-fclean: clean
+fclean:
+	make clean
 	$(RM) $(RMFLAGS) $(NAME)
 
 re :

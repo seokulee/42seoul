@@ -15,6 +15,12 @@ int main(int argc, char *argv[])
     std::string new_value = argv[3];
     std::string content;
 
+    if (old_value.empty())
+    {
+        std::cerr << "Error: old_value is empty" << std::endl;
+        return 1;
+    }
+
     std::ifstream inputFile(filename);
     if (!inputFile.is_open())
     {

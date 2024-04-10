@@ -1,11 +1,12 @@
 #include "ClapTrap.hpp"
 
 int main() {
-    ClapTrap clapTrap("CT1");
+    ClapTrap CT1("CT1");
+    ClapTrap CT2("CT2");
 
-    clapTrap.attack("target");
-    clapTrap.takeDamage(5);
-    clapTrap.beRepaired(5);
+    CT1.attack("CT2");
+    CT2.takeDamage(5);
+    CT2.beRepaired(5);
 
     return 0;
 }

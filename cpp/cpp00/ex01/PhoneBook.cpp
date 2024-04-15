@@ -20,16 +20,19 @@ void PhoneBook::AddContact()
     this->mContactCount++;
 
     std::cout << "### Add Contact ###" << std::endl;
-    for (int i = 0; i < 5; i++)
-    {
+    for (int i = 0; i < 5; i++) {
         std::cout << "Enter " << info[i] << ": ";
         std::getline(std::cin >> std::ws, input);
 
-        if (std::cin.eof())
-        {
+        if (std::cin.eof()) {
             std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             clearerr(stdin);
+            this->mContacts[index].SetFirstName("");
+            this->mContacts[index].SetLastName("");
+            this->mContacts[index].SetNickName("");
+            this->mContacts[index].SetPhoneNumber("");
+            this->mContacts[index].SetDarkestSecret("");
+            this->mContactCount--;
             return;
         }
 
@@ -50,17 +53,16 @@ void PhoneBook::SearchContact()
 {
     if (this->mContactCount == 0)
         std::cout << "### Empty PhoneBook ###" << std::endl;
-    else
-    {
+    else {
         int availableRange;
         int index;
 
         availableRange = mContactCount < 8 ? mContactCount - 1  : 7;
 
         std::cout << "###########       PhoneBook       ###########" << std::endl;
-        std::cout << "     index|first name| last name|  nickname" << std::endl;
-        for (int i = 0; i <= availableRange; i++)
-        {
+        std::cout << "     index|first name| last name|  nickname|" << std::endl;
+        std::cout << "-------------------------------------------" << std::endl;
+        for (int i = 0; i <= availableRange; i++) {
             std::cout << std::setw(10) << i + 1 << "|";
             if (this->mContacts[i].GetFirstName().size() > 10)
                 std::cout << std::setw(9) << this->mContacts[i].GetFirstName().substr(0, 9) << ".|";
@@ -79,16 +81,14 @@ void PhoneBook::SearchContact()
         std::cout << "Enter the index for details: " << std::endl;
         std::cin >> index;
         index--;
-        if (index < 0 || index > availableRange)
-        {
+        if (index < 0 || index > availableRange) {
             std::cout << "--------------" << std::endl;
             std::cout << "Invalid index." << std::endl;
             std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            clearerr(stdin);
             return;
         }
-        else
-        {
+        else {
             std::cout << "### Contact Details ###" << std::endl;
             std::cout << "First name: " << this->mContacts[index].GetFirstName() << std::endl;
             std::cout << "Last name: " << this->mContacts[index].GetLastName() << std::endl;

@@ -3,8 +3,7 @@ NAME = megaphone
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 AR = ar
-RM = rm
-RMFLAGS = -rf
+RM = rm -rf
 
 SRC = megaphone.cpp
 # SRC_DIR = ./
@@ -30,7 +29,7 @@ clean:
 
 fclean:
 	make clean
-	$(RM) $(RMFLAGS) $(NAME)
+	$(RM) $(NAME)
 
 re :
 	make fclean

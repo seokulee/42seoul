@@ -6,7 +6,6 @@ AR = ar
 RM = rm -rf
 
 SRC = megaphone.cpp
-# SRC_DIR = ./
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 
 OBJ = $(SRCS:.cpp=.o)

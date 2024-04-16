@@ -21,13 +21,14 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    std::ifstream inputFile(filename);
+    std::ifstream inputFile(filename.c_str());
     if (!inputFile.is_open())
     {
         std::cerr << "Error: could not open file: " << filename << std::endl;
         return 1;
     }
-    std::ofstream outputFile(filename.append(".replace"));
+    std::string outputFilename = filename + ".replace";
+    std::ofstream outputFile(outputFilename.c_str());
     if (!outputFile.is_open())
     {
         std::cerr << "Error: could not create file: " << filename << std::endl;

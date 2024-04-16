@@ -2,7 +2,14 @@
 
 Zombie::Zombie()
 {
-    std::cout << "Zombie is born" << std::endl;
+    mName = "NoName";
+    std::cout << "Zombie(NoName) is born" << std::endl;
+}
+
+Zombie::Zombie(std::string name)
+{
+    this->mName = name;
+    std::cout << "Zombie " << this->mName << " is born" << std::endl;
 }
 
 Zombie::~Zombie()

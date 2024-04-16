@@ -3,10 +3,15 @@
 int main()
 {
     Zombie stackZombie;
+    stackZombie.announce();
+    stackZombie.setName("Stack");
+    stackZombie.announce();
+
+    randomChump("Random");
+
     Zombie* heapZombie = newZombie("Heap");
     heapZombie->announce();
     delete heapZombie;
-    randomChump("Random");
 
     return 0;
 }

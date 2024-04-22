@@ -2,6 +2,7 @@
 #define FIXED_HPP
 
 #include <iostream>
+#include <cmath>
 
 class Fixed
 {
@@ -29,7 +30,6 @@ public:
     Fixed &operator++();
     const Fixed operator--(int);
     Fixed &operator--();
-    friend std::ostream &operator<<(std::ostream &out, Fixed const &fixed);
     int getRawBits(void) const;
     void setRawBits(int const raw);
     float toFloat(void) const;
@@ -39,5 +39,7 @@ public:
     static Fixed &max(Fixed &a, Fixed &b);
     static Fixed const &max(Fixed const &a, Fixed const &b);
 };
+
+std::ostream &operator<<(std::ostream &out, Fixed const &fixed);
 
 #endif

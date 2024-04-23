@@ -1,11 +1,11 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed() : mValue(0)
+Fixed::Fixed(void) : mValue(0)
 {
     std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::~Fixed()
+Fixed::~Fixed(void)
 {
     std::cout << "Destructor called" << std::endl;
 }

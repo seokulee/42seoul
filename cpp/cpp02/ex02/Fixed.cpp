@@ -1,8 +1,8 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed() : mValue(0) {}
+Fixed::Fixed(void) : mValue(0) {}
 
-Fixed::~Fixed() {}
+Fixed::~Fixed(void) {}
 
 Fixed::Fixed(int const value) : mValue(value << mFractionalBits) {}
 

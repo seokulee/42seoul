@@ -10,8 +10,8 @@ private:
     int mValue;
     static const int mFractionalBits = 8;
 public:
-    Fixed();
-    ~Fixed();
+    Fixed(void);
+    ~Fixed(void);
     Fixed(const Fixed &fixed);
     Fixed(int const value);
     Fixed(float const value);

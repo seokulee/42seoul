@@ -1,39 +1,32 @@
 #include "ScavTrap.hpp"
 
 ScavTrap::ScavTrap() {
+    std::cout << "ScavTrap default constructor called" << std::endl;
     _name = "default";
     _hitPoints = 100;
     _energyPoints = 50;
     _attackDamage = 20;
-
-    std::cout << "ScavTrap default constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name){
+ScavTrap::ScavTrap(std::string name) {
+    std::cout << "ScavTrap " << name << " constructor called" << std::endl;
     _name = name;
     _hitPoints = 100;
     _energyPoints = 50;
     _attackDamage = 20;
-
-    std::cout << "ScavTrap " << _name << " constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &other) {
-    _name = other._name;
-    _hitPoints = other._hitPoints;
-    _energyPoints = other._energyPoints;
-    _attackDamage = other._attackDamage;
-
-    std::cout << "ScavTrap Copy " << _name << " created" << std::endl;
+    std::cout << "ScavTrap Copy constructor called" << std::endl;
+    *this = other;
 }
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &other) {
+    std::cout << "ScavTrap Assignation operator called" << std::endl;
     _name = other._name;
     _hitPoints = other._hitPoints;
     _energyPoints = other._energyPoints;
     _attackDamage = other._attackDamage;
-
-    std::cout << "ScavTrap " << _name << " assigned" << std::endl;
 
     return *this;
 }
@@ -50,6 +43,22 @@ void ScavTrap::attack(std::string const &target) {
 
     std::cout << "ScavTrap " << _name << " attacks " << target << " causing " << _attackDamage << " points of damage!" << std::endl;
     _energyPoints -= 1;
+}
+
+void ScavTrap::takeDamage(unsigned int amount) {
+    if (!_energyPoints || !_hitPoints) {
+        std::cout << "No response from " << _name << std::endl;
+        return;
+    }
+
+    std::cout << "ScavTrap " << _name << " takes " << amount << " points of damage!" << std::endl;
+    if (_hitPoints < amount) {
+        _hitPoints = 0;
+        std::cout << "ScavTrap " << _name << " disabled" << std::endl;
+    } else {
+        _hitPoints -= amount;
+        std::cout << "ScavTrap " << _name << " has " << _hitPoints << " hit points" << std::endl;
+    }
 }
 
 void ScavTrap::guardGate() {

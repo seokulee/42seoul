@@ -2,33 +2,45 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 
-int main()
-{
-    std::string str;
+int main() {
+	// const Animal* k = new Animal();
+	const Animal* j = new Dog();
+	const Animal* i = new Cat();
 
-	Dog *d = new Dog();
-	Dog *d2 = new Dog();
-	std::cout << std::endl;
-
-	str = d->getBrain()->getIdea(0);
-	std::cout << "Dog1's first idea is "<< str << std::endl;
-
-	d->getBrain()->setIdea(0, "something");
-	str = d->getBrain()->getIdea(0);
-	std::cout << "Dog1's first idea is "<< str << std::endl;
-
-	*d2 = *d;
-	str = d2->getBrain()->getIdea(0);
-	std::cout << "Dog2's first idea is "<< str << std::endl;
-
-	std::cout << std::endl;
-	delete d;
-	d = NULL;
-	delete d2;
-	d2 = NULL;
+	delete j;//should not create a leak
+	delete i;
 
 	return 0;
+
 }
+
+// int main()
+// {
+//     std::string str;
+
+// 	Dog *d = new Dog();
+// 	Dog *d2 = new Dog();
+// 	std::cout << std::endl;
+
+// 	str = d->getBrain()->getIdea(0);
+// 	std::cout << "Dog1's first idea is "<< str << std::endl;
+
+// 	d->getBrain()->setIdea(0, "something");
+// 	str = d->getBrain()->getIdea(0);
+// 	std::cout << "Dog1's first idea is "<< str << std::endl;
+
+// 	*d2 = *d;
+// 	str = d2->getBrain()->getIdea(0);
+// 	std::cout << "Dog2's first idea is "<< str << std::endl;
+
+// 	std::cout << std::endl;
+// 	delete d;
+// 	d = NULL;
+// 	delete d2;
+// 	d2 = NULL;
+
+// 	return 0;
+// }
 
 // int main()
 // {

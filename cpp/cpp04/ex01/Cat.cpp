@@ -7,11 +7,18 @@ Cat::Cat() : Animal() {
 }
 
 Cat::Cat(const Cat &other) {
-    *this = other;
     std::cout << "Cat copy constructor called" << std::endl;
+    _type = other._type;
+    if (_brain) {
+        delete _brain;
+    }
+    _brain = new Brain(*other._brain);
 }
 
 Cat &Cat::operator=(const Cat &other) {
+    if (this == &other) {
+        return *this;
+    }
     _type = other._type;
     if (_brain) {
         delete _brain;

@@ -2,7 +2,6 @@ NAME = character
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-AR = ar
 RM = rm -rf
 
 SRC_DIR = ./
@@ -13,8 +12,6 @@ SRC = main.cpp \
 		Character.cpp \
 		Cure.cpp \
 		Ice.cpp \
-		ICharacter.cpp \
-		IMateriaSource.cpp \
 		MateriaSource.cpp
 OBJ = $(SRC:.cpp=.o)
 OBJS = $(addprefix $(OBJ_DIR), $(OBJ))
@@ -49,4 +46,3 @@ fclean:
 re :
 	make fclean
 	make all
-

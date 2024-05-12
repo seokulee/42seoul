@@ -1,7 +1,7 @@
 #include "error.h"
 
-int	err_put_str(char *str, int ret)
+void    err_put_str(char *str, int exit_code)
 {
-	ft_putstr_fd(str, 2);
-	return (ret);
+    printf("%s\n", str);
+    exit(exit_code);
 }

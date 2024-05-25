@@ -3,6 +3,7 @@
 
 # include <string>
 # include <stdint.h>
+# include "Data.hpp"
 
 class Serializer
 {
@@ -12,13 +13,6 @@ private:
     Serializer& operator=(const Serializer& other);
     ~Serializer();
 public:
-    struct Data
-    {
-        std::string s1;
-        std::string s2;
-        int n;
-    };
-
     static uintptr_t serialize(Data* ptr);
     static Data* deserialize(uintptr_t raw);
 };

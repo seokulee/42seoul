@@ -1,9 +1,10 @@
 #include <iostream>
 #include "Serializer.hpp"
+#include "Data.hpp"
 
 int main()
 {
-    Serializer::Data *ds = new Serializer::Data;
+    Data *ds = new Data;
     ds->n = 42;
     ds->s1 = "Hello, World!";
     ds->s2 = "Goodbye, World!";
@@ -20,7 +21,7 @@ int main()
     std::cout << "raw = " << raw << std::endl;
 
     std::cout << "Serializer::deserialize(raw)" << std::endl;
-    Serializer::Data *ds2 = Serializer::deserialize(raw);
+    Data *ds2 = Serializer::deserialize(raw);
     std::cout << "ds2 = " << ds2 << std::endl;
 
     std::cout << "---------------------------" << std::endl;

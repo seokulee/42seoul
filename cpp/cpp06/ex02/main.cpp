@@ -42,31 +42,25 @@ void identify(Base* p)
 // throw exception when dynamic_cast fails
 void identify(Base& p)
 {
-    for (size_t i = 0; i < 3; ++i) {
-        try {
-            switch (i)
-            {
-                case 0: {
-                    A a = dynamic_cast<A&>(p);
-                    std::cout << "& Actual type object is A" << std::endl;
-                    break ;
-                }
-                case 1: {
-                    B b = dynamic_cast<B&>(p);
-                    std::cout << "& Actual type object is B" << std::endl;
-                    break ;
-                }
-                case 2: {
-                    C c = dynamic_cast<C&>(p);
-                    std::cout << "& Actual type object is C" << std::endl;\
-                    break ;
-                }
-                default:
-                    std::cout << "& Unknown" << std::endl;
-                    break ;
-            }
-        } catch (std::exception &e) {}
-    }
+    try {
+        A& a = dynamic_cast<A&>(p);
+        std::cout << "Actual type object is A" << std::endl;
+        return;
+    } catch (const std::bad_cast&) {}
+
+    try {
+        B& b = dynamic_cast<B&>(p);
+        std::cout << "Actual type object is B" << std::endl;
+        return;
+    } catch (const std::bad_cast&) {}
+
+    try {
+        C& c = dynamic_cast<C&>(p);
+        std::cout << "Actual type object is C" << std::endl;
+        return;
+    } catch (const std::bad_cast&) {}
+
+    std::cout << "Unknown type" << std::endl;
 }
 
 int main()

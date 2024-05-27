@@ -9,12 +9,12 @@ void ScalarConverter::convert(const std::string &input)
     {
         char *ptr = NULL;
         value = std::strtod(input.c_str(), &ptr);
-        if (ptr == input.c_str() || *ptr != '\0')
+        if (*ptr != '\0')
         {
-            if (std::strcmp(ptr, "f") != 0)
-            {
+            if (input.size() == 1 && !std::isdigit(input[0]))
+                value = static_cast<double>(input[0]);
+            else if (strcmp(ptr, "f") != 0 && strcmp(ptr, "F") != 0)
                 throw std::invalid_argument("Invalid input");
-            }
         }
     } catch (const std::invalid_argument &e)
     {
@@ -47,19 +47,18 @@ void ScalarConverter::convert(const std::string &input)
 
     // int
     std::cout << "int: ";
-    // INT_MAX 쓸 수 있는지 확인하기
     (value > std::numeric_limits<int>::max() || value < std::numeric_limits<int>::min())
         ? std::cout << "impossible" << std::endl : std::cout << static_cast<int>(value) << std::endl;
 
     // float
     std::cout << "float: ";
-    (value > std::numeric_limits<float>::max() || value < std::numeric_limits<float>::min())
+    (value > std::numeric_limits<float>::max() || value < -std::numeric_limits<float>::max())
         ? std::cout << "impossible" << std::endl : (static_cast<float>(value) - static_cast<int>(value) == 0)
         ? std::cout << static_cast<float>(value) << ".0f" << std::endl : std::cout << static_cast<float>(value) << "f" << std::endl;
 
     // double
     std::cout << "double: ";
-    (value > std::numeric_limits<double>::max() || value < std::numeric_limits<double>::min())
+    (value > std::numeric_limits<double>::max() || value < -std::numeric_limits<double>::max())
         ? std::cout << "impossible" << std::endl : (value - static_cast<int>(value) == 0)
         ? std::cout << value << ".0" << std::endl : std::cout << value << std::endl;
 }

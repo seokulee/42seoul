@@ -46,6 +46,7 @@ int main(int, char**)
 
     for (int i = 0; i < MAX_VAL; i++)
     {
+        // std::cout << numbers[i] << std::endl;
         numbers[i] = rand();
     }
     delete [] mirror;//

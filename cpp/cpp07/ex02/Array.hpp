@@ -8,24 +8,58 @@ class Array
 {
 private:
     T* mArray;
-    std::size_t mSize;
+    unsigned int mSize;
 public:
-    Array();
-    Array(unsigned int n);
-    Array(const Array &other);
-    Array &operator=(const Array &other);
-    ~Array();
+    Array() : mArray(NULL), mSize(0) {};
+    Array(unsigned int n) : mSize(n)
+    {
+        mArray = new T[n];
+        for (unsigned int i = 0; i < n; ++i)
+            mArray[i] = T();
+    };
+    Array(const Array<T> &other)
+    {
+        mSize = other.mSize;
+        mArray = new T[mSize];
+        for (unsigned int i = 0; i < mSize; ++i)
+            mArray[i] = other.mArray[i];
+    };
+    Array<T> &operator=(const Array &other)
+    {
+        if (this != &other)
+        {
+            delete[] mArray;
+            mSize = other.mSize;
+            mArray = new T[mSize];
+            for (unsigned int i = 0; i < mSize; ++i)
+                mArray[i] = other.mArray[i];
+        }
+        return *this;
 
-    T &operator[](unsigned int i);
-    const T &operator[](unsigned int i) const;
-    std::size_t size() const;
+    };
+    ~Array()
+    {
+        delete[] mArray;
+    }
+
+    T &operator[](unsigned int i)
+    {
+        if (i >= mSize)
+            throw std::out_of_range("Index out of range");
+        return mArray[i];
+
+    };
+    const T &operator[](unsigned int i) const
+    {
+        if (i >= mSize)
+            throw std::out_of_range("Index out of range");
+        return mArray[i];
+
+    };
+    unsigned int size() const
+    {
+        return mSize;
+    };
 };
 
-template <typename T>
-Array<T>::Array() : mArray(NULL), mSize(0) {}
-
-template <typename T>
-Array<T>::Array(unsigned int n) : mArray(new T[n]), mSize(n) {}
-
-# include "Array.tpp"
 #endif

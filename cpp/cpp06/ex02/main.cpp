@@ -7,7 +7,6 @@
 
 Base *generate(void)
 {
-    srand(time(0));
     size_t randomNumber = rand();
 
     switch (randomNumber % 3)
@@ -43,22 +42,19 @@ void identify(Base* p)
 void identify(Base& p)
 {
     try {
-        A& a = dynamic_cast<A&>(p);
-        (void) a;
+        (void)dynamic_cast<A&>(p);
         std::cout << "Actual type object is A" << std::endl;
         return;
     } catch (const std::bad_cast&) {}
 
     try {
-        B& b = dynamic_cast<B&>(p);
-        (void) b;
+        (void)dynamic_cast<B&>(p);
         std::cout << "Actual type object is B" << std::endl;
         return;
     } catch (const std::bad_cast&) {}
 
     try {
-        C& c = dynamic_cast<C&>(p);
-        (void) c;
+        (void)dynamic_cast<C&>(p);
         std::cout << "Actual type object is C" << std::endl;
         return;
     } catch (const std::bad_cast&) {}
@@ -68,6 +64,7 @@ void identify(Base& p)
 
 int main()
 {
+    srand(time(0));
     Base* b = generate();
 
     identify(b);

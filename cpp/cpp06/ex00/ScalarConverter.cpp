@@ -23,7 +23,7 @@ void ScalarConverter::convert(const std::string &input)
     }
 
     // 특이 케이스 처리
-    if (input == "inff" || input == "+inff" || input == "-inff" || input == "nanf")
+    if (input == "inff" || input == "+inff" || input == "-inff" || input == "nanf" || input == "+nanf" || input == "-nanf")
     {
         std::cout << "char: impossible" << std::endl;
         std::cout << "int: impossible" << std::endl;
@@ -31,7 +31,7 @@ void ScalarConverter::convert(const std::string &input)
         std::cout << "double: " << input.substr(0, input.size() - 1) << std::endl;
         return;
     }
-    else if (input == "inf" || input == "+inf" || input == "-inf" || input == "nan")
+    else if (input == "inf" || input == "+inf" || input == "-inf" || input == "nan" || input == "+nan" || input == "-nan")
     {
         std::cout << "char: impossible" << std::endl;
         std::cout << "int: impossible" << std::endl;
@@ -42,7 +42,7 @@ void ScalarConverter::convert(const std::string &input)
 
     // char
     std::cout << "char: ";
-    std::isprint(static_cast<char>(value))
+    std::isprint(value)
         ? std::cout << "'" << static_cast<char>(value) << "'" << std::endl : std::cout << "Non displayable" << std::endl;
 
     // int

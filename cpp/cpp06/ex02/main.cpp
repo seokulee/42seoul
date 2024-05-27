@@ -22,7 +22,7 @@ Base *generate(void)
             return new C;
             break ;
     }
-    return nullptr;
+    return NULL;
 }
 
 // nullptr when dynamic_cast fails
@@ -44,18 +44,21 @@ void identify(Base& p)
 {
     try {
         A& a = dynamic_cast<A&>(p);
+        (void) a;
         std::cout << "Actual type object is A" << std::endl;
         return;
     } catch (const std::bad_cast&) {}
 
     try {
         B& b = dynamic_cast<B&>(p);
+        (void) b;
         std::cout << "Actual type object is B" << std::endl;
         return;
     } catch (const std::bad_cast&) {}
 
     try {
         C& c = dynamic_cast<C&>(p);
+        (void) c;
         std::cout << "Actual type object is C" << std::endl;
         return;
     } catch (const std::bad_cast&) {}

@@ -25,6 +25,7 @@ void Span::addNumber(int n)
 
 void Span::addNumbers(int s, int step, int n)
 {
+    //iterator로 구현 가능
     if (mVec.size() + n > mN)
         throw std::out_of_range("Out of range");
     for (int i = 0; i < n; i++)

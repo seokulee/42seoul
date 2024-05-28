@@ -70,6 +70,9 @@
         "type_traits": "cpp",
         "utility": "cpp",
         "__functional_03": "cpp",
-        "memory_resource": "cpp"
+        "memory_resource": "cpp",
+        "list": "cpp",
+        "__tree": "cpp",
+        "map": "cpp"
     }
 }

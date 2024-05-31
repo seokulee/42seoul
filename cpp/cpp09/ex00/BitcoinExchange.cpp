@@ -136,7 +136,7 @@ void BitcoinExchange::calculateValue(std::string const &inputFile)
         {
             if (value <= 0)
                 std::cerr << "Error: Not a positive number." << std::endl;
-            else if (value > std::numeric_limits<int>::max())
+            else if (value > 1000)
                 std::cerr << "Error: Too large a number" << std::endl;
             continue;
         }

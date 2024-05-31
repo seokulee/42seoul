@@ -11,8 +11,7 @@ int main(int argc, char *argv[])
         }
         BitcoinExchange exchange;
         std::string filename = argv[1];
-        exchange.readData(filename);
-        exchange.printData();
+        exchange.run(filename);
     }
     catch (const std::exception &e)
     {

@@ -16,6 +16,7 @@ class BitcoinExchange
 {
 private:
     std::map<std::string, double> mData;
+
     void readData();
     void validateInputFile(std::string const &inputFile);
     bool isValidDate(std::string const &date);
